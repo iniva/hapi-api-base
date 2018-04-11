@@ -1,0 +1,52 @@
+{
+  "name": "hapi-api-base",
+  "description": "Opinionated base code for a Hapi API",
+  "version": "1.0.0",
+  "main": "init.js",
+  "repository": "git@github.com:iniva/hapi-api-base.git",
+  "author": "Tony <tonyblast@gmail.com>",
+  "license": "MIT",
+  "engines": {
+    "node": ">=8.10.0 <9",
+    "yarn": ">=1.5.1"
+  },
+  "scripts": {
+    "clean": "rm -rf dist",
+    "build": "yarn clean && babel src --out-dir dist --source-maps --copy-files",
+    "start": "nodemon init.js",
+    "start:dist": "node dist/index.js",
+    "start:debug": "NODE_ENV=development DEBUG=* yarn start",
+    "start:development": "NODE_ENV=development DEBUG=api* yarn start",
+    "start:production": "NODE_ENV=production DEBUG=api* yarn start:dist",
+    "lint": "eslint src --ext .js --ignore-path .gitignore ."
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-plugin-module-resolver": "^3.1.1",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "eslint": "^4.19.1",
+    "eslint-import-resolver-babel-module": "^4.0.0",
+    "eslint-plugin-import": "^2.10.0",
+    "nodemon": "^1.17.3"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "blipp": "^3.0.0",
+    "boom": "^7.2.0",
+    "debug": "^3.1.0",
+    "dotenv": "^5.0.1",
+    "good": "^8.1.1",
+    "good-console": "^7.1.0",
+    "good-squeeze": "^5.0.2",
+    "hapi": "^17.3.1",
+    "joi": "^13.1.2",
+    "lodash": "^4.17.5",
+    "mongoose": "^5.0.14",
+    "sequelize": "^4.37.6",
+    "sqlite3": "^4.0.0",
+    "webpack-merge": "^4.1.2"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "presets": [
+    ["env",
+      {
+        "targets": {
+          "node": "8.10.0"
+        },
+        "useBuiltIns": true
+      }
+    ]
+  ],
+  "plugins": [
+    "transform-runtime",
+    ["module-resolver", {
+      "root": ["./src"],
+      "alias": {
+        "Config": "./src/config",
+        "Plugins": "./src/plugins",
+        "Utils": "./src/utils"
+      }
+    }]
+  ]
+}
