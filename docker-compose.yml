@@ -23,37 +23,37 @@ services:
     networks:
       - default
 
-  mongodb:
-    image: mongo:latest
-    container_name: "{project-name}-mongodb"
-    env_file:
-      - .env
-    volumes:
-      - ./data/db:/data/db
-    ports:
-      - target: 27017
-        published: 27017
-        protocol: tcp
-        mode: host
-    command: mongod --smallfiles --logpath=/dev/null # --quiet
-    networks:
-      - default
-
-  memcached:
-    image: memcached:alpine
-    container_name: "{project-name}-memcached"
-    env_file:
-      - .env
-    volumes:
-      - ./data/memcached:/var/lib/memcached
-    ports:
-      - target: 11211
-        published: 11211
-        protocol: tcp
-        mode: host
-    command: memcached -m 64 # set memory storage to 64 megabytes
-    networks:
-      - default
+#  mongodb:
+#    image: mongo:latest
+#    container_name: "{project-name}-mongodb"
+#    env_file:
+#      - .env
+#    volumes:
+#      - ./data/db:/data/db
+#    ports:
+#      - target: 27017
+#        published: 27017
+#        protocol: tcp
+#        mode: host
+#    command: mongod --smallfiles --logpath=/dev/null # --quiet
+#    networks:
+#      - default
+#
+#  memcached:
+#    image: memcached:alpine
+#    container_name: "{project-name}-memcached"
+#    env_file:
+#      - .env
+#    volumes:
+#      - ./data/memcached:/var/lib/memcached
+#    ports:
+#      - target: 11211
+#        published: 11211
+#        protocol: tcp
+#        mode: host
+#    command: memcached -m 64 # set memory storage to 64 megabytes
+#    networks:
+#      - default
 
 networks:
   default:
