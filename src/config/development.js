@@ -1,11 +1,11 @@
 'use strict';
 
 const development = {
-  server: {
-    debug: {
-      request: ['*']
+    server: {
+        debug: {
+            request: ['*']
+        }
     }
-  }
 };
 
 module.exports = development;

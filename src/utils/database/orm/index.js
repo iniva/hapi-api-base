@@ -26,7 +26,7 @@ export default class Orm {
 
     setModels(models) {
         for (const modelName in models) {
-            const { name, definition, options = {} } = models[modelName];
+            const { name, definition, options = {}} = models[modelName];
 
             this.models[name] = this.conn.define(name, definition, options);
         }
