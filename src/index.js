@@ -5,14 +5,15 @@ import blipp from 'blipp';
 import Good from 'good';
 
 import Config from './config';
-// import { MONGODB } from 'Config/database';
+import { MONGODB } from 'Config/database';
 import Plugins from './plugins';
 import Extensions from 'Utils/extensions';
 import Logger from 'Utils/logger';
+import schemas from 'Plugins/database/mongodb/schemas';
 
 const options = Config.get('server');
 const server = Hapi.server(options);
-const log = Logger.create();
+const log = Logger.create('main');
 
 const init = async() => {
     try {
@@ -24,8 +25,13 @@ const init = async() => {
         });
 
         // Our Plugins
+        const mongoOptions = {
+            ...MONGODB,
+            logger: Logger.create('plugins:database:mongodb'),
+            schemas
+        };
         const pluginOptions = {
-            // mongodb: MONGODB
+            mongodb: mongoOptions
         };
 
         await Plugins.register(server, pluginOptions);
@@ -38,10 +44,15 @@ const init = async() => {
         log(`${process.env.APP_NAME} running at ${server.info.uri}`);
     }
     catch (error) {
-        log('An error happened while starting the server');
+        log(`There was an error while starting the server: ${error.message}`);
         log(error);
     }
 };
+
+process.on('unhandledRejection', err => {
+    log('An Unhandled Rejection occurred.');
+    log(err);
+});
 
 (async() => {
     await init();
