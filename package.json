@@ -18,7 +18,7 @@
     "start:debug": "NODE_ENV=development DEBUG=* yarn start",
     "start:development": "NODE_ENV=development DEBUG=api* yarn start",
     "start:production": "NODE_ENV=production DEBUG=api* yarn start:dist",
-    "lint": "eslint src --ext .js --ignore-path .gitignore ."
+    "lint": "eslint src"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
