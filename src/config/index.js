@@ -19,7 +19,7 @@ const defaultConfig = {
 
     server: {
         host: process.env.SERVER_HOST || '0.0.0.0',
-        port: process.env.SERVER_PORT || 8092, // eslint-disable-line no-magic-numbers
+        port: process.env.SERVER_PORT || 8091, // eslint-disable-line no-magic-numbers
         router: {
             stripTrailingSlash: true
         },
