@@ -3,7 +3,7 @@
 import String from './string';
 
 export default class Helpers {
-  static string() {
-    return String;
-  }
+    static string() {
+        return String;
+    }
 }
