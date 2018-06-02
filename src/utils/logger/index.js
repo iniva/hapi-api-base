@@ -2,12 +2,16 @@
 
 import debug from 'debug';
 
+import Helpers from '../helpers';
+
 export default class Logger {
     static create(identifier = '') {
         if (identifier !== '') {
             identifier = `:${identifier}`;
         }
 
-        return debug(`${process.env.APP_NAME}${identifier}`);
+        const appName = Helpers.string().slug(process.env.APP_NAME);
+
+        return debug(`${appName}${identifier}`);
     }
 }

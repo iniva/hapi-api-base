@@ -1,15 +1,18 @@
 'use strict';
 
-// import mongodb from './database/mongodb';
+import Mongoose from 'hapi-nosql-mongoose';
+
 import health from './api/health';
 
 export default class Plugins {
     static async register(server, options) {
-        // await server.register({
-        //     plugin: mongodb,
-        //     options: options.mongodb
-        // });
+        // Database Plugins
+        await server.register({
+            plugin: Mongoose,
+            options: options.mongodb
+        });
 
+        // API Plugins
         await server.register(health);
     }
 }
