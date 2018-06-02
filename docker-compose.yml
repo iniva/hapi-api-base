@@ -18,7 +18,7 @@ services:
         mode: host
     depends_on:
       - mongodb
-      - memcached
+#      - memcached
     tty: true
     networks:
       - default
@@ -39,21 +39,21 @@ services:
     networks:
       - default
 
-  memcached:
-    image: memcached:alpine
-    container_name: "hapi-api-memcached"
-    env_file:
-      - .env
-    volumes:
-      - ./data/memcached:/var/lib/memcached
-    ports:
-      - target: 11211
-        published: 11211
-        protocol: tcp
-        mode: host
-    command: memcached -m 64 # set memory storage to 64 megabytes
-    networks:
-      - default
+#  memcached:
+#    image: memcached:alpine
+#    container_name: "hapi-api-memcached"
+#    env_file:
+#      - .env
+#    volumes:
+#      - ./data/memcached:/var/lib/memcached
+#    ports:
+#      - target: 11211
+#        published: 11211
+#        protocol: tcp
+#        mode: host
+#    command: memcached -m 64 # set memory storage to 64 megabytes
+#    networks:
+#      - default
 
 networks:
   default:
