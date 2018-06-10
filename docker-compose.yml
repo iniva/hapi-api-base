@@ -6,11 +6,13 @@ services:
     build:
       context: .
       target: local
+      args:
+        - UID=${UID}
     env_file:
       - .env
     volumes:
       - .:/usr/src/app
-    command: ["/bin/sh", "/serverStart.sh"]
+    command: ["/bin/sh", "/start.sh"]
     ports:
       - target: 8091
         published: 8091

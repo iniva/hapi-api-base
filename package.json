@@ -11,14 +11,16 @@
     "yarn": ">=1.5.1"
   },
   "scripts": {
+    "audit": "npm i --package-lock-only && npm audit",
     "clean": "rm -rf dist",
     "build": "yarn clean && babel src --out-dir dist --source-maps --copy-files",
     "start": "nodemon init.js",
     "start:dist": "node dist/index.js",
     "start:debug": "NODE_ENV=development DEBUG=* yarn start",
-    "start:development": "NODE_ENV=development DEBUG=api* yarn start",
-    "start:production": "NODE_ENV=production DEBUG=api* yarn start:dist",
-    "lint": "eslint src"
+    "start:development": "NODE_ENV=development yarn start",
+    "start:production": "NODE_ENV=production yarn start:dist",
+    "lint": "eslint src",
+    "test": "echo \"no tests for now\""
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
