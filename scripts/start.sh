@@ -1,5 +1,5 @@
 #!/bin/sh
-cd /usr/src/app
+cd /app
 
 echo "Removing node_modules folder"
 rm -rf node_modules

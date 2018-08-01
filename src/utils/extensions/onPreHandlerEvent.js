@@ -1,5 +1,3 @@
-'use strict';
-
 export default {
     type: 'onPreHandler',
     method: (request, h) => {

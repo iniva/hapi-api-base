@@ -1,7 +1,7 @@
-'use strict';
-
+// Database Plugin
 import Mongoose from 'hapi-nosql-mongoose';
 
+// API Plugins
 import health from './api/health';
 
 export default class Plugins {

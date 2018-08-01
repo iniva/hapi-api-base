@@ -1,0 +1,4 @@
+# Local Development
+# This folder is used to hold database volumes when using the docker-compose implementation
+**
+!.gitignore

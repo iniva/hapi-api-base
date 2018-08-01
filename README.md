@@ -63,8 +63,20 @@ Remove build files
 ### yarn build
 Generate build files (**dist** folder)
 
+### yarn build:docs
+Generate (or update) the `openapi.yaml` file.
+
 ### yarn test
 Run the test suites
 
 ### yarn lint
 Run lint tool
+
+### yarn bump:version
+Generate a new version tag. Also runs the `build:docs` command to update the `openapi.yaml` file with the new API version.
+
+### yarn commit
+Helps you make commit messages using the project standardized format
+
+# Documentation
+I use this [implementation](https://github.com/iniva/modular-openapi-docs-boilerplate) to document the API.

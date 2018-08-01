@@ -1,5 +1,3 @@
-'use strict';
-
 import HealthController from './controller';
 
 const prefix = 'health';

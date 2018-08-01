@@ -1,9 +1,14 @@
-'use strict';
-
 import merge from 'webpack-merge';
 import Path from 'path';
 
+import { STATUSES } from 'Utils/http/statusCodes';
+import { Time } from 'Utils/helpers/units';
 import * as packageInfo from '../../package';
+
+const ENVIRONMENT = process.env.NODE_ENV || 'development';
+const DEFAULT_SERVER_PORT = 8091;
+const DEFAULT_CACHE_TTL = 3600;
+const API_VERSION = packageInfo.version;
 
 const rootDir = Path.dirname(require.main.filename || process.mainModule.filename);
 const defaultConfig = {
@@ -15,18 +20,43 @@ const defaultConfig = {
 
     rootDir,
 
-    userAgent: `${process.env.APP_NAME}/${packageInfo.version}`,
+    userAgent: `${process.env.APP_NAME}/${API_VERSION}`,
+
+    version: API_VERSION,
+
+    cache: {
+        environment: ENVIRONMENT,
+        // available: redis, memory
+        // "memory" available only in development
+        driver: process.env.CACHE_DRIVER || 'memory',
+        // TTL in seconds
+        ttl: process.env.CACHE_DEFAULT_TTL || DEFAULT_CACHE_TTL
+    },
 
     server: {
+        app: {
+            version: API_VERSION
+        },
         host: process.env.SERVER_HOST || '0.0.0.0',
-        port: process.env.SERVER_PORT || 8091, // eslint-disable-line no-magic-numbers
+        port: process.env.SERVER_PORT || DEFAULT_SERVER_PORT,
         router: {
             stripTrailingSlash: true
         },
         routes: {
+            state: {
+                // Avoid errors when receiving invalid cookies
+                parse: false,
+                failAction: 'ignore'
+            },
             cors: {
                 origin: ['*'],
                 additionalHeaders: ['X-Requested-With']
+            },
+            cache: {
+                privacy: 'public',
+                statuses: [STATUSES.OK],
+                otherwise: 'no-cache',
+                expiresIn: Time.toMilliseconds(Time.DAY)
             }
         }
     },
@@ -50,7 +80,7 @@ const defaultConfig = {
         }
     }
 };
-const targetConfig = require(`./${process.env.NODE_ENV || 'development'}`);
+const { 'default': targetConfig } = require(`./${ENVIRONMENT}`);
 const configurations = merge(defaultConfig, targetConfig);
 
 const find = (object, property) => {

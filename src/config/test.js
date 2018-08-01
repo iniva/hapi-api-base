@@ -1,4 +1,4 @@
-const development = {
+const test = {
     server: {
         debug: {
             request: ['*']
@@ -6,4 +6,4 @@ const development = {
     }
 };
 
-export default development;
+export default test;

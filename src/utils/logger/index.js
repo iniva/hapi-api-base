@@ -1,8 +1,6 @@
-'use strict';
-
 import debug from 'debug';
 
-import Helpers from '../helpers';
+import { slug } from '../helpers/string';
 
 export default class Logger {
     static create(identifier = '') {
@@ -10,7 +8,7 @@ export default class Logger {
             identifier = `:${identifier}`;
         }
 
-        const appName = Helpers.string().slug(process.env.APP_NAME);
+        const appName = slug(process.env.APP_NAME);
 
         return debug(`${appName}${identifier}`);
     }

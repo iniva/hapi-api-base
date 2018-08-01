@@ -1,7 +1,7 @@
 {
   "name": "hapi-api-base",
   "description": "Opinionated base code for a Hapi API",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "main": "init.js",
   "repository": "git@github.com:iniva/hapi-api-base.git",
   "author": "Tony <tonyblast@gmail.com>",
@@ -13,27 +13,18 @@
   "scripts": {
     "audit": "npm i --package-lock-only && npm audit",
     "clean": "rm -rf dist",
+    "commit": "git-cz",
     "build": "yarn clean && babel src --out-dir dist --source-maps --copy-files",
+    "build:docs": "DEBUG=docs* node docs/builder.js",
+    "bump:version": "yarn version && yarn build:docs",
+    "lint": "eslint src hooks",
+    "hooks:message": "node hooks/index.js --action=message",
     "start": "nodemon init.js",
     "start:dist": "node dist/index.js",
     "start:debug": "NODE_ENV=development DEBUG=* yarn start",
     "start:development": "NODE_ENV=development yarn start",
     "start:production": "NODE_ENV=production yarn start:dist",
-    "lint": "eslint src",
     "test": "echo \"no tests for now\""
-  },
-  "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.0",
-    "babel-plugin-module-resolver": "^3.1.1",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-plugin-transform-runtime": "^6.23.0",
-    "babel-polyfill": "^6.26.0",
-    "babel-preset-env": "^1.6.1",
-    "eslint": "^4.19.1",
-    "eslint-import-resolver-babel-module": "^4.0.0",
-    "eslint-plugin-import": "^2.10.0",
-    "nodemon": "^1.17.3"
   },
   "dependencies": {
     "axios": "^0.18.0",
@@ -46,11 +37,34 @@
     "good-squeeze": "^5.0.2",
     "hapi": "^17.3.1",
     "hapi-nosql-mongoose": "^1.0.0",
+    "ioredis": "^3.2.2",
     "joi": "^13.1.2",
     "lodash": "^4.17.5",
     "mongoose": "^5.0.14",
     "sequelize": "^4.37.6",
     "sqlite3": "^4.0.0",
     "webpack-merge": "^4.1.2"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-plugin-module-resolver": "^3.1.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "commitizen": "^2.10.1",
+    "cz-conventional-changelog": "^2.1.0",
+    "eslint": "^4.19.1",
+    "eslint-import-resolver-babel-module": "^4.0.0",
+    "eslint-plugin-import": "^2.10.0",
+    "husky": "^1.0.0-rc.13",
+    "nodemon": "^1.17.3",
+    "refs-compiler": "^1.0.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
   }
 }
