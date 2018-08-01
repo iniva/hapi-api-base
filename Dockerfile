@@ -13,7 +13,7 @@ RUN ./local.sh ${UID}
 
 # The source code is mounted on the docker-compose file
 # to allow changes to files reflect on the container
-WORKDIR /usr/src/app
+WORKDIR /app
 
 USER ${UID}
 
