@@ -7,39 +7,40 @@ services:
       context: .
       target: local
       args:
-        - UID=${UID}
+      - UID=${UID}
     env_file:
-      - .env
+    - .env
     volumes:
-      - .:/app
+    - .:/app
     command: ["/bin/sh", "/start.sh"]
     ports:
-      - target: 8091
-        published: 8091
-        protocol: tcp
-        mode: host
+    - target: 8091
+      published: 8091
+      protocol: tcp
+      mode: host
     depends_on:
-      - mongodb
-#      - memcached
+    - mongodb
+#    - memcached
+#    - redis
     tty: true
     networks:
-      - default
+    - default
 
   mongodb:
     image: mongo:latest
     container_name: "hapi-api-mongodb"
     env_file:
-      - .env
+    - .env
     volumes:
-      - ./data/db:/data/db
+    - ./data/db:/data/db
     ports:
-      - target: 27017
-        published: 27017
-        protocol: tcp
-        mode: host
+    - target: 27017
+      published: 27017
+      protocol: tcp
+      mode: host
     command: mongod --smallfiles --logpath=/dev/null # --quiet
     networks:
-      - default
+    - default
 
 #  memcached:
 #    image: memcached:alpine
@@ -56,6 +57,19 @@ services:
 #    command: memcached -m 64 # set memory storage to 64 megabytes
 #    networks:
 #      - default
+
+#  redis:
+#    image: redis:4-alpine
+#    container_name: "hapi-api-redis"
+#    volumes:
+#    - ./data/redis:/data
+#    ports:
+#    - target: 6379
+#      published: 6379
+#      protocol: tcp
+#      mode: host
+#    networks:
+#    - default
 
 networks:
   default:
