@@ -1,5 +1,3 @@
-'use strict';
-
 const production = {};
 
-module.exports = production;
+export default production;

@@ -1,5 +1,3 @@
-'use strict';
-
 export const MONGODB = {
     uri: process.env.MONGO_DB_URI,
     config: {

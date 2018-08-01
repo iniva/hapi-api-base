@@ -1,5 +1,3 @@
-'use strict';
-
 import onRequestEvent from './onRequestEvent';
 import onPreHandlerEvent from './onPreHandlerEvent';
 

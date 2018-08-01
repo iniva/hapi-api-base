@@ -1,5 +1,3 @@
-'use strict';
-
 const development = {
     server: {
         debug: {
@@ -8,4 +6,4 @@ const development = {
     }
 };
 
-module.exports = development;
+export default development;

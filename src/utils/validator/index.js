@@ -1,5 +1,3 @@
-'use strict';
-
 import Joi from 'joi';
 import Boom from 'boom';
 

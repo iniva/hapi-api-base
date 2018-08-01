@@ -1,5 +1,3 @@
-'use strict';
-
 import Hapi from 'hapi';
 import blipp from 'blipp';
 import Good from 'good';

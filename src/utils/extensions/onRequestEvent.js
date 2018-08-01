@@ -1,5 +1,3 @@
-'use strict';
-
 import Boom from 'boom';
 
 export default {

@@ -1,5 +1,3 @@
-'use strict';
-
 import Mongoose from 'hapi-nosql-mongoose';
 
 import health from './api/health';

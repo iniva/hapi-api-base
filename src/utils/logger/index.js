@@ -1,5 +1,3 @@
-'use strict';
-
 import debug from 'debug';
 
 import { slug } from '../helpers/string';

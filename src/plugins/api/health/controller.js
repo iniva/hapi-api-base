@@ -1,5 +1,3 @@
-'use strict';
-
 export default class HealthController {
     static async get(request) {
         return {
