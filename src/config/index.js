@@ -10,6 +10,7 @@ import * as packageInfo from '../../package';
 const ENVIRONMENT = process.env.NODE_ENV || 'development';
 const DEFAULT_SERVER_PORT = 8091;
 const DEFAULT_CACHE_TTL = 3600;
+const API_VERSION = packageInfo.version;
 
 const rootDir = Path.dirname(require.main.filename || process.mainModule.filename);
 const defaultConfig = {
@@ -21,7 +22,9 @@ const defaultConfig = {
 
     rootDir,
 
-    userAgent: `${process.env.APP_NAME}/${packageInfo.version}`,
+    userAgent: `${process.env.APP_NAME}/${API_VERSION}`,
+
+    version: API_VERSION,
 
     cache: {
         environment: ENVIRONMENT,
@@ -33,6 +36,9 @@ const defaultConfig = {
     },
 
     server: {
+        app: {
+            version: API_VERSION
+        },
         host: process.env.SERVER_HOST || '0.0.0.0',
         port: process.env.SERVER_PORT || DEFAULT_SERVER_PORT,
         router: {
