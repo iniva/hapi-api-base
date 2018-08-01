@@ -1,10 +1,11 @@
 'use strict';
 
 export default class HealthController {
-    static async get(request, h) {
+    static async get(request) {
         return {
             data: {
-                message: 'All good here, thanks for asking!'
+                message: 'All good here, thanks for asking!',
+                version: request.server.settings.app.version
             }
         };
     }
