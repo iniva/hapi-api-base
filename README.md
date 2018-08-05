@@ -19,7 +19,7 @@ To use your machine to run everything you will need:
         source ~/.profile
         ```
 * **Both**
-    * Run `nvm install lts/carbon` to install the current LTS version of Node
+    * Run `nvm install lts/carbon --latest-npm` to install the current LTS version of Node. Also, attempt to install the latest npm version
     * Run `nvm use lts/carbon` to set Node to use this version
     * Run `yarn install` to install the project dependencies
     * Run `yarn start:development` to start the API [see below for more options](#available-commands)
