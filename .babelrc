@@ -1,17 +1,18 @@
 {
   "presets": [
-    ["env",
+    ["@babel/preset-env",
       {
         "targets": {
           "node": "current"
         },
-        "useBuiltIns": true
+        "useBuiltIns": "entry"
       }
     ]
   ],
   "plugins": [
-    "transform-runtime",
-    ["transform-object-rest-spread", {
+    "@babel/plugin-transform-runtime",
+    ["@babel/plugin-proposal-object-rest-spread", {
+      "loose": true,
       "useBuiltIns": true
     }],
     ["module-resolver", {
