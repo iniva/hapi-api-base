@@ -1,13 +1,13 @@
 {
   "name": "hapi-api-base",
   "description": "Opinionated base code for a Hapi API",
-  "version": "2.0.0",
+  "version": "2.0.2",
   "main": "init.js",
   "repository": "git@github.com:iniva/hapi-api-base.git",
   "author": "Tony <tonyblast@gmail.com>",
   "license": "MIT",
   "engines": {
-    "node": ">=8.10.0 <9",
+    "node": ">=8.10.0 <9 || >=10",
     "yarn": ">=1.6.0"
   },
   "scripts": {
