@@ -3,7 +3,7 @@ import { promisify } from 'util';
 
 import { REDIS } from 'Config/cache';
 import Logger from 'Utils/logger';
-import { Time } from 'Utils/helpers/units';
+import { toMilliseconds } from 'Utils/helpers/units';
 
 export default class Redis {
     constructor() {
@@ -14,7 +14,7 @@ export default class Redis {
         const options = {
             ...REDIS.config,
             retryStrategy: times => {
-                const MAX_TIME = Time.toMilliseconds(2);
+                const MAX_TIME = toMilliseconds(2);
                 const TIME_MULTIPLIER = 500;
 
                 this.retries = times;
