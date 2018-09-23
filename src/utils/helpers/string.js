@@ -1,4 +1,8 @@
-export const slug = str => {
+export const slug = (str = '') => {
+    if (str === '') {
+        return str;
+    }
+
     str = str.replace(/^\s+|\s+$/g, ''); // trim
     str = str.toLowerCase();
 
