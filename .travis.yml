@@ -4,6 +4,11 @@ node_js:
   - "8"
   - "10"
   - "node"
+cache:
+  yarn: true
+  directories:
+    - "node_modules"
 before_install:
   - curl -o- -L https://yarnpkg.com/install.sh | bash
   - export PATH="$HOME/.yarn/bin:$PATH"
+after_script: "yarn test:coveralls"
