@@ -15,9 +15,19 @@ describe('Helpers: String', () => {
         expect(resultText).toBe('The title is clear');
     });
 
-    it('should return a camelized version of a string', () => {
-        const resultText = camelize('the title is clear');
+    it('should return a camelized version of a single word string', () => {
+        const normalWord = camelize('greenhouse');
+        const accentedWord = camelize('árbol');
 
-        expect(resultText).toBe('The Title Is Clear');
+        expect(normalWord).toBe('Greenhouse');
+        expect(accentedWord).toBe('Árbol');
+    });
+
+    it('should return a camelized version of a multiple word string', () => {
+        const normalString = camelize('the title is clear');
+        const accentedString = camelize('el árbol es único');
+
+        expect(normalString).toBe('The Title Is Clear');
+        expect(accentedString).toBe('El Árbol Es Único');
     });
 });
