@@ -1,10 +1,9 @@
 /* global describe it expect */
 
 import HTTP from './';
+import Config from 'Config';
 
-import Config from 'Config/';
-
-describe('HTTP class', () => {
+describe('Utils: HTTP', () => {
     it('should create an instance with defaults', () => {
         const http = new HTTP();
 
