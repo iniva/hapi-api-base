@@ -1,5 +1,5 @@
 import axios from 'axios';
-import _ from 'lodash';
+import { merge } from 'lodash';
 
 import Config from 'Config/index';
 import Logger from '../logger';
@@ -35,14 +35,15 @@ const initInterceptors = instance => {
 };
 
 export default class HTTP {
-    constructor() {
+    constructor(options = {}) {
         const defaults = {
             headers: {
                 'User-Agent': Config.get('userAgent')
             }
         };
+        const settings = merge(defaults, options);
 
-        this.instance = axios.create(defaults);
+        this.instance = axios.create(settings);
         initInterceptors(this.instance);
     }
 
@@ -52,7 +53,7 @@ export default class HTTP {
             url: endpoint
         };
 
-        config = _.merge(config, options);
+        config = merge(config, options);
 
         return await this.instance(config);
     }

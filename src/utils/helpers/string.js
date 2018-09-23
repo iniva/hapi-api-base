@@ -1,4 +1,8 @@
-export const slug = str => {
+export const slug = (str = '') => {
+    if (str === '') {
+        return str;
+    }
+
     str = str.replace(/^\s+|\s+$/g, ''); // trim
     str = str.toLowerCase();
 
@@ -21,4 +25,8 @@ export const capitalize = str => {
     return `${str[0].toUpperCase()}${str.slice(1)}`;
 };
 
-export const camelize = string => string.replace(/\b\w/g, l => l.toUpperCase());
+export const camelize = str => 
+    String(str)
+        .split(' ')
+        .map(s => `${s.charAt(0).toUpperCase()}${s.substring(1)}`)
+        .join(' ');

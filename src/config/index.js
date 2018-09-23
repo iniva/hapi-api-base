@@ -2,7 +2,7 @@ import merge from 'webpack-merge';
 import Path from 'path';
 
 import { STATUSES } from 'Utils/http/statusCodes';
-import { Time } from 'Utils/helpers/units';
+import { DAY, toMilliseconds } from 'Utils/helpers/units';
 import * as packageInfo from '../../package';
 
 const ENVIRONMENT = process.env.NODE_ENV || 'development';
@@ -56,7 +56,7 @@ const defaultConfig = {
                 privacy: 'public',
                 statuses: [STATUSES.OK],
                 otherwise: 'no-cache',
-                expiresIn: Time.toMilliseconds(Time.DAY)
+                expiresIn: toMilliseconds(DAY)
             }
         }
     },
