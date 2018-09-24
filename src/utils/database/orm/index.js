@@ -13,8 +13,13 @@ const ASSOCIATION_TYPES = {
 
 export default class Orm {
     constructor(options) {
-        options = Object.assign({ operatorsAliases: false, logging: false }, options);
-        this.conn = new Sequelize(options.database, options.username, options.password, options);
+        const settings = {
+            operatorsAliases: false, 
+            logging: false, 
+            ...options 
+        };
+
+        this.conn = new Sequelize(settings.database, settings.username, settings.password, settings);
         this.models = {};
     }
 
