@@ -16,37 +16,13 @@
     "import"
   ],
   "rules": {
-    // POSSIBLE ERRORS
     "comma-dangle": "error",
     "no-cond-assign": ["error", "always"],
-    "no-console": "error",
-    "no-constant-condition": "error",
-    "no-control-regex": "error",
-    "no-debugger": "error",
-    "no-dupe-keys": "error",
-    "no-duplicate-case": "error",
-    "no-empty-character-class": "error",
-    "no-empty": "error",
-    "no-ex-assign": "error",
-    "no-extra-boolean-cast": "error",
     "no-extra-parens": ["error", "functions"],
-    "no-extra-semi": "error",
-    "no-func-assign": "error",
     "no-inner-declarations": ["error", "both"],
-    "no-invalid-regexp": "error",
-    "no-irregular-whitespace": "error",
-    "no-negated-in-lhs": "error",
-    "no-obj-calls": "error",
-    "no-regex-spaces": "error",
-    "no-sparse-arrays": "error",
-    "no-unexpected-multiline": "error",
-    "no-unreachable": "error",
-    "use-isnan": "error",
     "valid-jsdoc": "off",
-    "valid-typeof": "error",
 
-    // BEST PRACTICES
-    "accessor-pairs": ["warning", {
+    "accessor-pairs": [1, {
       "getWithoutSet": true
     }],
     "block-scoped-var": "off",
@@ -58,17 +34,13 @@
       "allowPattern": "^[a-z]+(_[a-z]+)+$"
     }],
     "guard-for-in": "off",
-    "no-alert": "error",
     "no-caller": "error",
-    "no-case-declarations": 1,
     "no-div-regex": "error",
     "no-else-return": "error",
-    "no-empty-pattern": "error",
-    "no-eq-null": "off",
+    "no-eq-null": "error",
     "no-eval": "error",
     "no-extend-native": 1,
     "no-extra-bind": "error",
-    "no-fallthrough": "error",
     "no-floating-decimal": "error",
     "no-implicit-coercion": ["error", {
       "boolean": false
@@ -92,7 +64,6 @@
     "no-param-reassign": "off",
     "no-process-env": "off",
     "no-proto": "error",
-    "no-redeclare": "error",
     "no-return-assign": "error",
     "no-script-url": "error",
     "no-self-compare": "error",
@@ -109,20 +80,17 @@
     "wrap-iife": "error",
     "yoda": "error",
 
-    // VARIABLES
+    "strict": ["error", "never"],
+
     "init-declarations": "off",
     "no-catch-shadow": "off",
-    "no-delete-var": "error",
     "no-label-var": "error",
     "no-shadow-restricted-names": "error",
     "no-shadow": "off",
     "no-undef-init": "error",
-    "no-undef": "error",
     "no-undefined": "off",
-    "no-unused-vars": 1,
     "no-use-before-define": ["error", "nofunc"],
 
-    // NODE.JS AND COMMONJS
     "callback-return": ["error", ["callback", "cb", "next", "done"]],
     "global-require": "off",
     "handle-callback-err": ["error", "^(e|err|error)$"],
@@ -133,7 +101,6 @@
     "no-restricted-modules": "off",
     "no-sync": "off",
 
-    // STYLISTIC ISSUES
     "array-bracket-spacing": "error",
     "block-spacing": "error",
     "brace-style": ["error", "stroustrup"],
@@ -147,7 +114,7 @@
     "id-length": "off",
     "id-match": "off",
     "indent": ["error", 4, {
-      "SwitchCase": "warning"
+      "SwitchCase": 1
     }],
     "key-spacing": "error",
     "keyword-spacing": "error",
@@ -168,7 +135,7 @@
     "no-mixed-spaces-and-tabs": "error",
     "no-multiple-empty-lines": ["error", {
       "max": 1,
-      "maxBOF": "off"
+      "maxBOF": 0
     }],
     "no-negated-condition": "error",
     "no-nested-ternary": "error",
@@ -190,6 +157,7 @@
     "operator-assignment": ["error", "always"],
     "operator-linebreak": ["error", "before"],
     "padded-blocks": ["error", "never"],
+    "prefer-object-spread": "error",
     "quote-props": ["error", "as-needed", {
       "keywords": true
     }],
@@ -209,20 +177,11 @@
     }],
     "wrap-regex": "off",
 
-    // ECMASCRIPT 6
-    "strict": ["error", "never"],
-    "import/no-commonjs": ["error", { "allowRequire": true }],
-    "prefer-object-spread": "error",
     "arrow-body-style": ["off", "never"],
     "arrow-parens": ["error", "as-needed"],
     "arrow-spacing": "error",
-    "constructor-super": "error",
     "generator-star-spacing": "error",
-    "no-class-assign": "error",
     "no-confusing-arrow": "error",
-    "no-const-assign": "error",
-    "no-dupe-class-members": "error",
-    "no-this-before-super": "error",
     "no-var": "error",
     "object-shorthand": "error",
     "prefer-arrow-callback": "error",
@@ -233,6 +192,7 @@
       "ignoreReadBeforeAssign": false
     }],
     "no-useless-constructor": 1,
-    "require-yield": "error"
+
+    "import/no-commonjs": ["error", { "allowRequire": true }]
   }
 }
