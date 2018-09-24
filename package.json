@@ -1,7 +1,7 @@
 {
   "name": "hapi-api-base",
   "description": "Opinionated base code for a Hapi API",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "main": "init.js",
   "repository": "git@github.com:iniva/hapi-api-base.git",
   "author": "Tony <tonyblast@gmail.com>",
