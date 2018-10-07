@@ -2,6 +2,7 @@
 FROM node:carbon-alpine as local
 
 ARG UID=1000
+ENV YARN_CACHE_FOLDER="/app/.cache/yarn"
 
 COPY local.sh /
 COPY start.sh /
