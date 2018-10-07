@@ -1,28 +1,42 @@
-# STAGE: BUILDER - Pre-release stage
+# STAGE: BUILDER
 FROM node:carbon-alpine as builder
 
-COPY . /app
 WORKDIR /app
 
-RUN set -x; \
-    yarn install && \
-    yarn build
+COPY ./package.json /app/package.json
+COPY ./yarn.lock /app/yarn.lock
+RUN yarn install
 
-CMD ["node"]
+COPY . /app
 
-# STAGE: TESTING - Assertion step
+RUN yarn build
+
+# STAGE: TESTING
 FROM builder as tester
 
-RUN set -x; \
-    yarn test
+RUN yarn test
+
+# STAGE: PRERELEASE
+FROM node:carbon-alpine as prerelease
+
+COPY --from=builder /app/package.json /tmp/package.json
+COPY --from=builder /app/yarn.lock /tmp/yarn.lock
+
+RUN cd /tmp \
+    && yarn install --production
+
+WORKDIR /app
+
+COPY --from=builder /app /app
+RUN rm -rf /app/node_modules \
+    && cp -a /tmp/node_modules /app
 
 # STAGE: RELEASE
 FROM node:carbon-alpine as release
 
 ENV SERVER_PORT=8091
-ENV YARN_CACHE_FOLDER="/app/.cache/yarn"
 
-COPY --from=builder /app /app
+COPY --from=prerelease /app /app
 
 EXPOSE $SERVER_PORT
 WORKDIR /app
