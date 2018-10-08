@@ -1,9 +1,6 @@
 #!/bin/sh
 cd /app
 
-echo "Removing node_modules folder"
-rm -rf node_modules
-
 echo "Installing Packages"
 yarn install
 
