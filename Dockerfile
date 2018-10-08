@@ -1,49 +1,42 @@
-# STAGE: LOCAL - Development Environment
-FROM node:carbon-alpine as local
-
-ARG UID=1000
-
-COPY scripts/ /
-
-# Verify if provided UID exists
-# Otherwise create a new non-root user to avoid
-# file permission conflicts with host machine
-# This is intended only for local development
-RUN ./local.sh ${UID}
-
-# The source code is mounted on the docker-compose file
-# to allow changes to files reflect on the container
-WORKDIR /app
-
-USER ${UID}
-
-CMD ["node"]
-
-# STAGE: BUILDER - Pre-release stage
+# STAGE: BUILDER
 FROM node:carbon-alpine as builder
 
-COPY . /app
 WORKDIR /app
 
-RUN set -x; \
-    yarn install && \
-    yarn build
+COPY ./package.json /app/package.json
+COPY ./yarn.lock /app/yarn.lock
+RUN yarn install
 
-CMD ["node"]
+COPY . /app
 
-# STAGE: TESTING - Assertion step
+RUN yarn build
+
+# STAGE: TESTING
 FROM builder as tester
 
-RUN set -x; \
-    yarn test
+RUN yarn test
+
+# STAGE: PRERELEASE
+FROM node:carbon-alpine as prerelease
+
+COPY --from=builder /app/package.json /tmp/package.json
+COPY --from=builder /app/yarn.lock /tmp/yarn.lock
+
+RUN cd /tmp \
+    && yarn install --production
+
+WORKDIR /app
+
+COPY --from=builder /app /app
+RUN rm -rf /app/node_modules \
+    && cp -a /tmp/node_modules /app
 
 # STAGE: RELEASE
 FROM node:carbon-alpine as release
 
 ENV SERVER_PORT=8091
-ENV YARN_CACHE_FOLDER="/app/.cache/yarn"
 
-COPY --from=builder /app /app
+COPY --from=prerelease /app /app
 
 EXPOSE $SERVER_PORT
 WORKDIR /app
