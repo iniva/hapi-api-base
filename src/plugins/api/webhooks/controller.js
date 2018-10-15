@@ -1,6 +1,6 @@
 import Boom from 'boom';
 
-import GithubWebhook from 'Utils/slack/webhook/github';
+import GithubWebhook from 'Utils/slack/webhooks/github';
 
 export default class WebhooksController {
     static async get() {

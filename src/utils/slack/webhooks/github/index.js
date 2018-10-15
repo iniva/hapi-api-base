@@ -1,4 +1,4 @@
-import Webhook from 'Utils/slack/webhook';
+import Webhook from 'Utils/slack/webhooks';
 import { buildData } from './helpers';
 
 export default class GithubWebhook extends Webhook {
