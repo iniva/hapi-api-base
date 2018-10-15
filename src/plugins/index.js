@@ -3,6 +3,7 @@ import Mongoose from 'hapi-nosql-mongoose';
 
 // API Plugins
 import health from './api/health';
+import webhooks from './api/webhooks';
 
 export default class Plugins {
     static async register(server, options) {
@@ -13,6 +14,9 @@ export default class Plugins {
         });
 
         // API Plugins
-        await server.register(health);
+        await server.register([
+            health,
+            webhooks
+        ]);
     }
 }

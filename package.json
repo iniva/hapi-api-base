@@ -30,6 +30,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.0.0",
+    "@slack/client": "^4.8.0",
     "axios": "^0.18.0",
     "blipp": "^3.0.0",
     "boom": "^7.2.0",
