@@ -1,6 +1,9 @@
 // Database Plugin
 import Mongoose from 'hapi-nosql-mongoose';
 
+// Services Plugins
+import discoveryService from './services/discovery';
+
 // API Plugins
 import health from './api/health';
 import webhooks from './api/webhooks';
@@ -11,6 +14,11 @@ export default class Plugins {
         await server.register({
             plugin: Mongoose,
             options: options.mongodb
+        });
+
+        // Services Plugins
+        await server.register({
+            plugin: discoveryService
         });
 
         // API Plugins
