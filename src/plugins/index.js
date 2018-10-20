@@ -3,7 +3,7 @@ import Mongoose from 'hapi-nosql-mongoose';
 
 // Services Plugins
 import discoveryService from './services/discovery';
-
+import slackService from './services/slack';
 // API Plugins
 import health from './api/health';
 import webhooks from './api/webhooks';
@@ -17,9 +17,21 @@ export default class Plugins {
         });
 
         // Services Plugins
-        await server.register({
-            plugin: discoveryService
-        });
+        await server.register([
+            {
+                plugin: discoveryService,
+                options: {
+                    mask: options.services.mask
+                }
+            },
+            {
+                plugin: slackService,
+                options: {
+                    mask: options.services.mask,
+                    ...options.services.slack
+                }
+            }
+        ]);
 
         // API Plugins
         await server.register([

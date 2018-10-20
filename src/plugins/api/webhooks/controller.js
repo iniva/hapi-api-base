@@ -1,28 +1,22 @@
 import Boom from 'boom';
 
-import GithubWebhook from 'Utils/slack/webhooks/github';
-
 export default class WebhooksController {
-    static async get() {
+    static async get(request) {
+        const slackService = request.server['service::discovery'].get('slack');
+
         return {
-            data: [
-                'github'
-            ]
+            data: slackService.webhookList()
         };
     }
 
     static async github(request) {
-        const url = process.env.SLACK_WEBHOOK_URL || '';
-
-        if (!url) {
-            return Boom.badImplementation('Slack Webhook URL is required');
-        }        
-
         try {
             const { headers, payload } = request;
-            const webhook = new GithubWebhook(url, headers, payload);
+            const slackService = request.server['service::discovery'].get('slack');
 
-            return await webhook.send();
+            return await slackService
+                .eventFromGithub(headers, payload)
+                .send();
         } 
         catch (error) {
             return Boom.badRequest(error);

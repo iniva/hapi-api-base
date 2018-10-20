@@ -1,19 +1,19 @@
-import * as events from './events';
+export const getAuthorDetails = author => {
+    const { login, html_url, avatar_url } = author;
 
-const getEventFromHeaders = headers => {
+    return {
+        author_name: login,
+        author_link: html_url,
+        author_icon: avatar_url
+    };
+};
+
+export const getRepoName = repository => repository.full_name.split('/').pop();
+
+export const getEventFromHeaders = headers => {
     if (!Object.keys(headers).includes('x-github-event')) {
         throw new Error('Event is not present in headers');
     }
 
     return headers['x-github-event'];
-};
-
-export const buildData = (headers, payload) => {
-    const event = getEventFromHeaders(headers);
-
-    if (!Object(events).hasOwnProperty(event)) {
-        throw new Error(`Event [${event}] is not supported`);
-    }
-
-    return events[event](payload);
 };
