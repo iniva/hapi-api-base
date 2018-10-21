@@ -1,6 +1,6 @@
 /* global describe it expect */
 
-import { getAuthorDetails, getRepoName, getEventFromHeaders } from './helpers';
+import { getAuthorDetails, getEventFromHeaders } from './helpers';
 
 describe('Webhooks: Github - Helpers', () => {
     it('should return the author details', () => {
@@ -33,32 +33,6 @@ describe('Webhooks: Github - Helpers', () => {
 
         expect(typeof author).toEqual('object');
         expect(author).toMatchObject(expected);
-    });
-
-    it('should return the repository name', () => {
-        const extendedRepository = {
-            id: 135493233,
-            node_id: 'MDEwOlJlcG9zaXRvcnkxMzU0OTMyMzM=',
-            name: 'Hello-World',
-            full_name: 'Codertocat/Hello-World',
-            owner: {
-                login: 'Codertocat',
-                id: 21031067,
-                node_id: 'MDQ6VXNlcjIxMDMxMDY3',
-                avatar_url: 'https://avatars1.githubusercontent.com/u/21031067?v=4',
-                gravatar_id: '',
-                url: 'https://api.github.com/users/Codertocat',
-                html_url: 'https://github.com/Codertocat',
-                type: 'User',
-                site_admin: false
-            },
-            html_url: 'https://github.com/Codertocat/Hello-World'
-        };
-        const expected = 'Hello-World';
-        const repo = getRepoName(extendedRepository);
-
-        expect(typeof repo).toEqual('string');
-        expect(repo).toEqual(expected);
     });
 
     it('should throw if Github Event is not found in headers', () => {

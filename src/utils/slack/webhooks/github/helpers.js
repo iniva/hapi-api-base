@@ -8,8 +8,6 @@ export const getAuthorDetails = author => {
     };
 };
 
-export const getRepoName = repository => repository.full_name.split('/').pop();
-
 export const getEventFromHeaders = (headers = {}) => {
     if (!Object.keys(headers).includes('x-github-event')) {
         throw new Error('Event is not present in headers');

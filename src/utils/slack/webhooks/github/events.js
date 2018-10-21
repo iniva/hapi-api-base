@@ -1,11 +1,11 @@
-import { getAuthorDetails, getRepoName } from './helpers';
+import { getAuthorDetails } from './helpers';
 
 const EVENTS_AVAILABLE = ['release', 'issues'];
 
 const release = payload => {
     const { release: { html_url, tag_name, author, published_at }, repository } = payload;
     const authorDetails = getAuthorDetails(author);
-    const repoName = getRepoName(repository);
+    const repoName = repository.name;
 
     return {
         attachments: [
@@ -26,7 +26,7 @@ const issues = payload => {
     const { action, issue, repository } = payload;
     const { html_url, number, title, user, labels, state, updated_at } = issue;
     const authorDetails = getAuthorDetails(user);
-    const repoName = getRepoName(repository);
+    const repoName = repository.name;
 
     const labelField = {
         title: 'labels',
