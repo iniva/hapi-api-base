@@ -8,6 +8,10 @@ const github = (headers, payload) => {
         throw new Error(`Event [${event}] is not available in Github webhooks`);
     }
 
+    if (!payload) {
+        throw new Error(`Event [${event}] has no payload`);
+    }
+
     return builData(event, payload);
 };
 
