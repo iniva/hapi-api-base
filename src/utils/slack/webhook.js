@@ -1,7 +1,7 @@
 import { IncomingWebhook } from '@slack/client';
 
 export default class Webhook {
-    constructor(options) {
+    constructor(options = {}) {
         if (!options.url) {
             throw new Error('Slack Webhook URL is required');
         }
