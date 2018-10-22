@@ -5,7 +5,7 @@ import github from './';
 const fakeAuthor = {
     login: 'Codertocat',
     avatar_url: 'https://avatars1.githubusercontent.com/u/21031067?v=4',
-    html_url: 'https://github.com/Codertocat',
+    html_url: 'https://github.com/Codertocat'
 };
 const fakeRepository = {
     name: 'Hello-World',
