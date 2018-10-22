@@ -6,9 +6,13 @@ import { DAY, toMilliseconds } from 'Utils/helpers/units';
 import * as packageInfo from '../../package';
 
 const ENVIRONMENT = process.env.NODE_ENV || 'development';
-const DEFAULT_SERVER_PORT = 8091;
-const DEFAULT_CACHE_TTL = 3600;
+const SERVER_HOST = process.env.SERVER_HOST || '0.0.0.0';
+const SERVER_PORT = process.env.SERVER_PORT || 8091; // eslint-disable-line no-magic-numbers
+const CACHE_DRIVER = process.env.CACHE_DRIVER || 'memory';
+const CACHE_DEFAULT_TTL = process.env.CACHE_DEFAULT_TTL || 3600; // eslint-disable-line no-magic-numbers
+const APP_NAME = process.env.APP_NAME || 'Hapi API';
 const API_VERSION = packageInfo.version;
+const DISCOVERY_SERVICE_MASK = process.env.DISCOVERY_SERVICE_MASK || 'service::';
 
 const rootDir = Path.dirname(require.main.filename || process.mainModule.filename);
 const defaultConfig = {
@@ -20,25 +24,29 @@ const defaultConfig = {
 
     rootDir,
 
-    userAgent: `${process.env.APP_NAME}/${API_VERSION}`,
+    userAgent: `${APP_NAME}/${API_VERSION}`,
 
     version: API_VERSION,
+
+    services: {
+        mask: DISCOVERY_SERVICE_MASK
+    },
 
     cache: {
         environment: ENVIRONMENT,
         // available: redis, memory
         // "memory" available only in development
-        driver: process.env.CACHE_DRIVER || 'memory',
+        driver: CACHE_DRIVER,
         // TTL in seconds
-        ttl: process.env.CACHE_DEFAULT_TTL || DEFAULT_CACHE_TTL
+        ttl: CACHE_DEFAULT_TTL
     },
 
     server: {
         app: {
             version: API_VERSION
         },
-        host: process.env.SERVER_HOST || '0.0.0.0',
-        port: process.env.SERVER_PORT || DEFAULT_SERVER_PORT,
+        host: SERVER_HOST,
+        port: SERVER_PORT,
         router: {
             stripTrailingSlash: true
         },

@@ -1,10 +1,18 @@
-import Webhook from 'Utils/slack/webhooks';
-import { buildData } from './helpers';
+import { getEventFromHeaders } from './helpers';
+import { EVENTS_AVAILABLE, buildData } from './events';
 
-export default class GithubWebhook extends Webhook {
-    constructor(url, headers, payload) {
-        super(url);
+const github = (headers, payload) => {
+    const event = getEventFromHeaders(headers);
 
-        this.data = buildData(headers, payload);
+    if (!EVENTS_AVAILABLE.includes(event)) {
+        throw new Error(`Event [${event}] is not available in Github webhooks`);
     }
-}
+
+    if (!payload) {
+        throw new Error(`Event [${event}] has no payload`);
+    }
+
+    return buildData(event, payload);
+};
+
+export default github;

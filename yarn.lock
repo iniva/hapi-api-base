@@ -2079,6 +2079,11 @@ escodegen@^1.9.1:
   optionalDependencies:
     source-map "~0.6.1"
 
+eslint-import-resolver-alias@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/eslint-import-resolver-alias/-/eslint-import-resolver-alias-1.1.1.tgz#c308bbcb1c0fd66a623837edec9ef7423f67a85a"
+  integrity sha512-WJjkXU1aEQiBplyJNnnkKXVW0bWV8RA2tpub3+AGVdU+5EMpayg7du45l9fxIyIryLC3uPUOh85nDPIx+3A9UQ==
+
 eslint-import-resolver-babel-module@^5.0.0-beta.1:
   version "5.0.0-beta.1"
   resolved "https://registry.yarnpkg.com/eslint-import-resolver-babel-module/-/eslint-import-resolver-babel-module-5.0.0-beta.1.tgz#3f7899c14039aab1b1ffa2f0e53463a6152ef121"

@@ -15,6 +15,18 @@
   "plugins": [
     "import"
   ],
+  "settings": {
+    "import/resolver": {
+      "alias": {
+        "map": [
+          ["Config", "./src/config"],
+          ["Plugins", "./src/plugins"],
+          ["Utils", "./src/utils"]
+        ],
+        "extensions": [".js"]
+      }
+    }
+  },
   "rules": {
     "comma-dangle": "error",
     "no-cond-assign": ["error", "always"],
@@ -193,6 +205,13 @@
     }],
     "no-useless-constructor": 1,
 
-    "import/no-commonjs": ["error", { "allowRequire": true }]
+    "import/no-commonjs": ["error", { "allowRequire": true }],
+    "import/order": ["warn", {
+      "groups": [
+        ["builtin", "external"],
+        ["internal", "parent", "sibling", "index"]
+      ],
+      "newlines-between": "always"
+    }]
   }
 }

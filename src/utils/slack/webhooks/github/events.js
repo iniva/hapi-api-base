@@ -1,24 +1,13 @@
-const username = process.env.SLACK_WEBHOOK_BOT_NAME || 'Hapi API Bot';
+import { getAuthorDetails } from './helpers';
 
-const getAuthorDetails = author => {
-    const { login, html_url, avatar_url } = author;
+const EVENTS_AVAILABLE = ['release', 'issues'];
 
-    return {
-        author_name: login,
-        author_link: html_url,
-        author_icon: avatar_url
-    };
-};
-
-const getRepoName = repository => repository.full_name.split('/').pop();
-
-export const release = payload => {
+const release = payload => {
     const { release: { html_url, tag_name, author, published_at }, repository } = payload;
     const authorDetails = getAuthorDetails(author);
-    const repoName = getRepoName(repository);
+    const repoName = repository.name;
 
     return {
-        username,
         attachments: [
             {
                 fallback: `Release ${tag_name} published for ${repoName}`,
@@ -33,11 +22,11 @@ export const release = payload => {
     };
 };
 
-export const issues = payload => {
+const issues = payload => {
     const { action, issue, repository } = payload;
     const { html_url, number, title, user, labels, state, updated_at } = issue;
     const authorDetails = getAuthorDetails(user);
-    const repoName = getRepoName(repository);
+    const repoName = repository.name;
 
     const labelField = {
         title: 'labels',
@@ -52,7 +41,6 @@ export const issues = payload => {
     const fields = [labelField, stateField];
 
     return {
-        username,
         attachments: [
             {
                 fallback: `Issue #${number}: ${title}`,
@@ -66,4 +54,18 @@ export const issues = payload => {
             }
         ]
     };
+};
+
+const events = {
+    release,
+    issues
+};
+
+const buildData = (event, payload) => {
+    return events[event](payload);
+};
+
+export {
+    EVENTS_AVAILABLE,
+    buildData
 };

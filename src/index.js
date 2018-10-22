@@ -4,6 +4,7 @@ import Good from 'good';
 
 import Config from './config';
 import { MONGODB } from 'Config/database';
+import { SLACK } from 'Config/slack';
 import Plugins from './plugins';
 import Extensions from 'Utils/extensions';
 import Logger from 'Utils/logger';
@@ -32,6 +33,10 @@ const init = async() => {
                 ...MONGODB,
                 logger: Logger.create('plugins:database:mongodb'),
                 schemas
+            },
+            services: {
+                ...Config.get('services'),
+                slack: SLACK
             }
         };
 
