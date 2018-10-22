@@ -61,11 +61,11 @@ const events = {
     issues
 };
 
-const builData = (event, payload) => {
+const buildData = (event, payload) => {
     return events[event](payload);
 };
 
 export {
     EVENTS_AVAILABLE,
-    builData
+    buildData
 };

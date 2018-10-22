@@ -1,5 +1,5 @@
 import { getEventFromHeaders } from './helpers';
-import { EVENTS_AVAILABLE, builData } from './events';
+import { EVENTS_AVAILABLE, buildData } from './events';
 
 const github = (headers, payload) => {
     const event = getEventFromHeaders(headers);
@@ -12,7 +12,7 @@ const github = (headers, payload) => {
         throw new Error(`Event [${event}] has no payload`);
     }
 
-    return builData(event, payload);
+    return buildData(event, payload);
 };
 
 export default github;
