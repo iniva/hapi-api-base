@@ -6056,6 +6056,13 @@ sisteransi@^0.1.1:
   resolved "https://registry.yarnpkg.com/sisteransi/-/sisteransi-0.1.1.tgz#5431447d5f7d1675aac667ccd0b865a4994cb3ce"
   integrity sha512-PmGOd02bM9YO5ifxpw36nrNMBTptEtfRl4qUYl9SndkolplkrZZOW7PGHjrZL53QvMVj9nQ+TKqUnRsw4tJa4g==
 
+slack-webhooks-handler@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/slack-webhooks-handler/-/slack-webhooks-handler-1.0.1.tgz#ac40eff41f06bebf2a5bcf3bc732a01b68f0e284"
+  integrity sha512-O/n4DayKiwM9Ip7ndHG/s3EW5oZr5dwZ7rEkrFtlgZmtHuepgAxS0Oj8YfwimJLrTOILqzsc8Xu+Rs8045lrRA==
+  dependencies:
+    "@slack/client" "^4.8.0"
+
 slash@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/slash/-/slash-1.0.0.tgz#c41f2f6c39fc16d1cd17ad4b5d896114ae470d55"

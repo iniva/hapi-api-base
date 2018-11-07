@@ -46,6 +46,7 @@
     "lodash": "^4.17.10",
     "mongoose": "^5.2.13",
     "sequelize": "^4.38.0",
+    "slack-webhooks-handler": "^1.0.1",
     "sqlite3": "^4.0.2",
     "webpack-merge": "^4.1.4"
   },
