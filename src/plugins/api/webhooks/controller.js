@@ -9,15 +9,15 @@ export default class WebhooksController {
         };
     }
 
-    static async github(request) {
+    static async trigger(request) {
         try {
-            const { headers, payload } = request;
+            const { headers, params, payload } = request;
             const slackService = request.server['service::discovery'].get('slack');
 
             return await slackService
-                .eventFromGithub(headers, payload)
+                .eventFrom(params.type, headers, payload)
                 .send();
-        } 
+        }
         catch (error) {
             return Boom.badRequest(error);
         }
