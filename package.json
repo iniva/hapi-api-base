@@ -42,7 +42,7 @@
     "hapi": "^17.5.4",
     "hapi-nosql-mongoose": "^1.0.0",
     "ioredis": "^4.0.0",
-    "joi": "^13.6.0",
+    "joi": "^14.0.4",
     "lodash": "^4.17.10",
     "mongoose": "^5.3.10",
     "sequelize": "^4.41.1",
