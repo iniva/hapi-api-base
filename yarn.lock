@@ -2896,10 +2896,10 @@ hapi-nosql-mongoose@^1.0.0:
     hoek "5.x.x"
     mongoose "5.x.x"
 
-hapi@^17.5.4:
-  version "17.6.0"
-  resolved "https://registry.yarnpkg.com/hapi/-/hapi-17.6.0.tgz#158a2276253a8de727be678c4daeb1f73929e588"
-  integrity sha512-GSHjE1hJExluAukrT/QuYSk96irmbYBDd3wOgywiHsPoR2QeKgDnIttD+dB6NbADEmSdb9MS5gTUIVq0uHTdkA==
+hapi@^17.7.0:
+  version "17.7.0"
+  resolved "https://registry.yarnpkg.com/hapi/-/hapi-17.7.0.tgz#7d335e161fcfef5cc7f2a0aa090ccf9169f9382a"
+  integrity sha512-I34AQyIVO4kTpjkC6pyAq4yaeUcIuCxt6QOEh5QjD6K1yGLTMSGE4muNxp0qR9FTW7ARJ/Innwf/48MiMlOxcw==
   dependencies:
     accept "3.x.x"
     ammo "3.x.x"
@@ -2909,11 +2909,12 @@ hapi@^17.5.4:
     catbox "10.x.x"
     catbox-memory "3.x.x"
     heavy "6.x.x"
-    hoek "5.x.x"
-    joi "13.x.x"
+    hoek "6.x.x"
+    joi "14.x.x"
     mimos "4.x.x"
     podium "3.x.x"
     shot "4.x.x"
+    somever "2.x.x"
     statehood "6.x.x"
     subtext "6.x.x"
     teamwork "3.x.x"
@@ -3955,7 +3956,7 @@ joi@13.x.x, joi@^13.7.0:
     isemail "3.x.x"
     topo "3.x.x"
 
-joi@^14.0.4:
+joi@14.x.x, joi@^14.0.4:
   version "14.0.4"
   resolved "https://registry.yarnpkg.com/joi/-/joi-14.0.4.tgz#f066f79330f6bd6f3dda243be6d2c211f83a5f9b"
   integrity sha512-KUXRcinDUMMbtlOk7YLGHQvG73dLyf8bmgE+6sBTkdJbZpeGVGAlPXEHLiQBV7KinD/VLD5OA0EUgoTTfbRAJQ==
@@ -5958,6 +5959,14 @@ snapdragon@^0.8.1:
     source-map "^0.5.6"
     source-map-resolve "^0.5.0"
     use "^3.1.0"
+
+somever@2.x.x:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/somever/-/somever-2.0.0.tgz#7bdbed3bee8ece2c7c8a2e7d9a1c022bd98d6c89"
+  integrity sha512-9JaIPP+HxwYGqCDqqK3tRaTqdtQHoK6Qy3IrXhIt2q5x8fs8RcfU7BMWlFTCOgFazK8p88zIv1tHQXvAwtXMyw==
+  dependencies:
+    bounce "1.x.x"
+    hoek "6.x.x"
 
 source-map-resolve@^0.5.0:
   version "0.5.2"
