@@ -1,5 +1,5 @@
 # STAGE: LOCAL - Development Environment
-FROM node:carbon-alpine as local
+FROM node:dubnium-alpine as local
 
 ARG UID=1000
 ENV YARN_CACHE_FOLDER="/app/.cache/yarn"

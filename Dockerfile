@@ -1,5 +1,5 @@
 # STAGE: BUILDER
-FROM node:carbon-alpine as builder
+FROM node:dubnium-alpine as builder
 
 WORKDIR /app
 
@@ -17,7 +17,7 @@ FROM builder as tester
 RUN yarn test
 
 # STAGE: PRERELEASE
-FROM node:carbon-alpine as prerelease
+FROM node:dubnium-alpine as prerelease
 
 COPY --from=builder /app/package.json /tmp/package.json
 COPY --from=builder /app/yarn.lock /tmp/yarn.lock
@@ -32,7 +32,7 @@ RUN rm -rf /app/node_modules \
     && cp -a /tmp/node_modules /app
 
 # STAGE: RELEASE
-FROM node:carbon-alpine as release
+FROM node:dubnium-alpine as release
 
 ENV SERVER_PORT=8091
 
