@@ -2,22 +2,22 @@ import Boom from 'boom';
 
 export default class WebhooksController {
     static async get(request) {
-        const slackService = request.server['service::discovery'].get('slack');
+        const slackService = request.server.discoveryService.get('slack');
 
         return {
             data: slackService.webhookList()
         };
     }
 
-    static async github(request) {
+    static async trigger(request) {
         try {
-            const { headers, payload } = request;
-            const slackService = request.server['service::discovery'].get('slack');
+            const { headers, params, payload } = request;
+            const slackService = request.server.discoveryService.get('slack');
 
             return await slackService
-                .eventFromGithub(headers, payload)
+                .eventFrom(params.type, headers, payload)
                 .send();
-        } 
+        }
         catch (error) {
             return Boom.badRequest(error);
         }

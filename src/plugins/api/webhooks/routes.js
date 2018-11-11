@@ -14,10 +14,10 @@ export default [
 
     {
         method: 'POST',
-        path: `/${prefix}/github`,
+        path: `/${prefix}/{type}`,
         options: {
-            description: 'GitHub Webhook',
-            handler: WebhooksController.github
+            description: 'Webhooks Trigger',
+            handler: WebhooksController.trigger
         }
     }
 ];

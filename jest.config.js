@@ -9,7 +9,7 @@ module.exports = { // eslint-disable-line import/no-commonjs
     testEnvironment: 'node',
     coverageReporters: [
         'text-summary',
-        'html', 
+        'html',
         'lcov'
     ],
     collectCoverageFrom: [

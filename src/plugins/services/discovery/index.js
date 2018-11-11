@@ -1,14 +1,16 @@
+import Config from 'Config/';
+
 const name = 'discovery-service';
-const DISCOVERY_SERVICE_MASK = process.env.DISCOVERY_SERVICE_MASK || 'service::';
+const serviceMask = Config.get('services.mask');
 
 export default {
     name,
     register: async server => {
         const getAll = () => {
             const services = Object.keys(server)
-                .filter(key => key.includes(DISCOVERY_SERVICE_MASK))
+                .filter(key => key.includes(serviceMask))
                 .reduce((obj, key) => {
-                    const service = key.replace(DISCOVERY_SERVICE_MASK, '');
+                    const service = key.replace(serviceMask, '');
 
                     obj[service] = server[key];
                     return obj;
@@ -27,6 +29,6 @@ export default {
             return services[service];
         };
 
-        server.decorate('server', `${DISCOVERY_SERVICE_MASK}discovery`, { get, getAll });
+        server.decorate('server', 'discoveryService', { get, getAll });
     }
 };

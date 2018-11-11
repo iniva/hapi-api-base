@@ -1,9 +1,8 @@
-import Webhook from 'Utils/slack/webhook';
-import github from 'Utils/slack/webhooks/github';
+import { Dispatcher, factory } from 'slack-webhooks-handler';
 
 export default class SlackService {
     constructor({ webhook }) {
-        this.webhook = new Webhook(webhook);
+        this.dispatcher = new Dispatcher(webhook);
     }
 
     webhookList() {
@@ -13,13 +12,14 @@ export default class SlackService {
     }
 
     async send() {
-        return await this.webhook.send();
+        return await this.dispatcher.send();
     }
 
-    eventFromGithub(headers, payload) {
-        const { attachments } = github(headers, payload);
+    eventFrom(type, ...params) {
+        const webhook = factory(type);
+        const { attachments } = webhook(...params);
 
-        this.webhook.withAttachments(attachments);
+        this.dispatcher.withAttachments(attachments);
 
         return this;
     }
