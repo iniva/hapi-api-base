@@ -8,10 +8,9 @@
   "license": "MIT",
   "engines": {
     "node": ">=8.10.0 <9 || >=10",
-    "yarn": ">=1.6.0"
+    "yarn": ">=1.10.0"
   },
   "scripts": {
-    "audit": "npm i --package-lock-only && npm audit",
     "clean": "rm -rf dist",
     "commit": "git-cz",
     "build": "yarn clean && babel src --out-dir dist --source-maps --copy-files",
