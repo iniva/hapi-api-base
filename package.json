@@ -28,7 +28,7 @@
     "test:coveralls": "yarn test --coverage --coverageReporters=text-lcov | coveralls"
   },
   "dependencies": {
-    "@babel/runtime": "^7.1.5",
+    "@babel/runtime": "^7.2.0",
     "@slack/client": "^4.8.0",
     "axios": "^0.18.0",
     "blipp": "^3.0.0",
@@ -50,12 +50,12 @@
     "webpack-merge": "^4.1.4"
   },
   "devDependencies": {
-    "@babel/cli": "^7.1.5",
-    "@babel/core": "^7.1.5",
-    "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
-    "@babel/plugin-transform-runtime": "^7.0.0",
+    "@babel/cli": "^7.2.0",
+    "@babel/core": "^7.2.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.2.0",
+    "@babel/plugin-transform-runtime": "^7.2.0",
     "@babel/polyfill": "^7.0.0",
-    "@babel/preset-env": "^7.1.5",
+    "@babel/preset-env": "^7.2.0",
     "@babel/register": "^7.0.0",
     "@types/jest": "^23.3.2",
     "babel-core": "^7.0.0-bridge.0",
