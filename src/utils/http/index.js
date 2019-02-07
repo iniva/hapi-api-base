@@ -1,61 +1,30 @@
-import axios from 'axios';
-import { merge } from 'lodash';
+import got from 'got';
 
 import Config from 'Config/index';
-import Logger from '../logger';
-
-const log = Logger.create('utils:http');
-
-const initInterceptors = instance => {
-    // Request Interceptor
-    instance.interceptors.request.use(requestConfig => {
-        if (Config.get('debug.request')) {
-            log('Request Configuration');
-            log(requestConfig);
-        }
-
-        return requestConfig;
-    }, error => {
-        log('Error in Request');
-        return Promise.reject(error);
-    });
-
-    // Response Interceptor
-    instance.interceptors.response.use(responseConfig => {
-        if (Config.get('debug.response')) {
-            log('Response Configuration');
-            log(responseConfig);
-        }
-
-        return responseConfig;
-    }, error => {
-        log('Error in Response');
-        return Promise.reject(error);
-    });
-};
 
 export default class HTTP {
     constructor(options = {}) {
-        const defaults = {
+        const defaultOptions = {
             headers: {
                 'User-Agent': Config.get('userAgent')
-            }
+            },
+            responseType: 'json',
+            json: true
         };
-        const settings = merge(defaults, options);
+        const defaults = {
+            handler: got.defaults.handler,
+            options: got.mergeOptions(got.defaults.options, defaultOptions),
+            mutableDefaults: got.defaults.mutableDefaults
+        };
+        const settings = got.mergeOptions(defaults, options);
 
-        this.instance = axios.create(settings);
-        initInterceptors(this.instance);
+        this.instance = got.create(settings);
     }
 
     async request(method, endpoint, options) {
-        let config = {
-            method,
-            url: endpoint
-        };
+        const config = got.mergeOptions({ method }, options);
 
-        config = merge(config, options);
-
-        return await this.instance(config);
+        return await this.instance(endpoint, config);
     }
 
     async get(endpoint, options = {}) {
@@ -64,29 +33,5 @@ export default class HTTP {
 
     async post(endpoint, options = {}) {
         return await this.request('post', endpoint, options);
-    }
-
-    handleError(error) {
-        if (error.response) {
-            log('Error in Response');
-            // The request was made and the server responded with a status code
-            // that falls out of the range of 2xx
-            log('\n== Data ==\n', error.response.data);
-            // log(error.response.status);
-            // log(error.response.headers);
-        }
-        else if (error.request) {
-            log('Error in Request');
-            // The request was made but no response was received
-            // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
-            // http.ClientRequest in node.js
-            log('\n== Message ==\n', error.request);
-        }
-        else {
-            // Something happened in setting up the request that triggered an Error
-            log('\n== Error ==\n', error.message);
-        }
-        log('\n== Configuration ==\n', error.config);
-        log('\n== Error ==\n', error);
     }
 }
