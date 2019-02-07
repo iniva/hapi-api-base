@@ -6,19 +6,19 @@ export default class HTTP {
     constructor(options = {}) {
         const defaultOptions = {
             headers: {
-                'User-Agent': Config.get('userAgent')
+                'user-agent': Config.get('userAgent')
             },
             responseType: 'json',
             json: true
         };
+        const fullOptions = got.mergeOptions(defaultOptions, options);
         const defaults = {
             handler: got.defaults.handler,
-            options: got.mergeOptions(got.defaults.options, defaultOptions),
+            options: got.mergeOptions(got.defaults.options, fullOptions),
             mutableDefaults: got.defaults.mutableDefaults
         };
-        const settings = got.mergeOptions(defaults, options);
 
-        this.instance = got.create(settings);
+        this.instance = got.create(defaults);
     }
 
     async request(method, endpoint, options) {
