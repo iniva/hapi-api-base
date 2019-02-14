@@ -1,6 +1,49 @@
 import got from 'got';
 
 import Config from 'Config/index';
+import Logger from '../logger';
+
+const log = Logger.create('utils:http');
+
+const getHooks = () => {
+    const logError = error => {
+        if (Config.get('debug.error')) {
+            log('Debug: Error');
+            log(error);
+        }
+
+        return error;
+    };
+
+    const logRequest = async options => {
+        if (Config.get('debug.request')) {
+            log('Debug: Request Options');
+            log(options);
+        }
+    };
+
+    const logRetry = (options, error, retryCount) => { // eslint-disable-line no-unused-vars
+        log(`Retrying request [${retryCount} time]`);
+    };
+
+    const logAfterResponse = (response, retryWithMergedOptions) => { // eslint-disable-line no-unused-vars
+        if (Config.get('debug.response')) {
+            log('Debug: Response');
+            log(response);
+        }
+
+        return response;
+    };
+
+    return {
+        beforeError: [logError],
+        init: [],
+        beforeRequest: [logRequest],
+        beforeRedirect: [],
+        beforeRetry: [logRetry],
+        afterResponse: [logAfterResponse]
+    };
+};
 
 export default class HTTP {
     constructor(options = {}) {
@@ -9,8 +52,10 @@ export default class HTTP {
                 'user-agent': Config.get('userAgent')
             },
             responseType: 'json',
-            json: true
+            json: true,
+            hooks: getHooks()
         };
+
         const fullOptions = got.mergeOptions(defaultOptions, options);
         const defaults = {
             handler: got.defaults.handler,
@@ -21,17 +66,21 @@ export default class HTTP {
         this.instance = got.create(defaults);
     }
 
-    async request(method, endpoint, options) {
-        const config = got.mergeOptions({ method }, options);
+    async request(endpoint, options) {
+        const config = this.instance.mergeOptions(this.instance.defaults.options, options);
 
         return await this.instance(endpoint, config);
     }
 
     async get(endpoint, options = {}) {
-        return await this.request('get', endpoint, options);
+        options.method = 'get';
+
+        return await this.request(endpoint, options);
     }
 
     async post(endpoint, options = {}) {
-        return await this.request('post', endpoint, options);
+        options.method = 'post';
+
+        return await this.request(endpoint, options);
     }
 }
