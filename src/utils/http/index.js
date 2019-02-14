@@ -1,92 +1,86 @@
-import axios from 'axios';
-import { merge } from 'lodash';
+import got from 'got';
 
 import Config from 'Config/index';
 import Logger from '../logger';
 
 const log = Logger.create('utils:http');
 
-const initInterceptors = instance => {
-    // Request Interceptor
-    instance.interceptors.request.use(requestConfig => {
+const getHooks = () => {
+    const logError = error => {
+        if (Config.get('debug.error')) {
+            log('Debug: Error');
+            log(error);
+        }
+
+        return error;
+    };
+
+    const logRequest = async options => {
         if (Config.get('debug.request')) {
-            log('Request Configuration');
-            log(requestConfig);
+            log('Debug: Request Options');
+            log(options);
         }
+    };
 
-        return requestConfig;
-    }, error => {
-        log('Error in Request');
-        return Promise.reject(error);
-    });
+    const logRetry = (options, error, retryCount) => { // eslint-disable-line no-unused-vars
+        log(`Retrying request [${retryCount} time]`);
+    };
 
-    // Response Interceptor
-    instance.interceptors.response.use(responseConfig => {
+    const logAfterResponse = (response, retryWithMergedOptions) => { // eslint-disable-line no-unused-vars
         if (Config.get('debug.response')) {
-            log('Response Configuration');
-            log(responseConfig);
+            log('Debug: Response');
+            log(response);
         }
 
-        return responseConfig;
-    }, error => {
-        log('Error in Response');
-        return Promise.reject(error);
-    });
+        return response;
+    };
+
+    return {
+        beforeError: [logError],
+        init: [],
+        beforeRequest: [logRequest],
+        beforeRedirect: [],
+        beforeRetry: [logRetry],
+        afterResponse: [logAfterResponse]
+    };
 };
 
 export default class HTTP {
     constructor(options = {}) {
-        const defaults = {
+        const defaultOptions = {
             headers: {
-                'User-Agent': Config.get('userAgent')
-            }
+                'user-agent': Config.get('userAgent')
+            },
+            responseType: 'json',
+            json: true,
+            hooks: getHooks()
         };
-        const settings = merge(defaults, options);
 
-        this.instance = axios.create(settings);
-        initInterceptors(this.instance);
+        const fullOptions = got.mergeOptions(defaultOptions, options);
+        const defaults = {
+            handler: got.defaults.handler,
+            options: got.mergeOptions(got.defaults.options, fullOptions),
+            mutableDefaults: got.defaults.mutableDefaults
+        };
+
+        this.instance = got.create(defaults);
     }
 
-    async request(method, endpoint, options) {
-        let config = {
-            method,
-            url: endpoint
-        };
+    async request(endpoint, options) {
+        const config = this.instance.mergeOptions(this.instance.defaults.options, options);
 
-        config = merge(config, options);
-
-        return await this.instance(config);
+        return await this.instance(endpoint, config);
     }
 
     async get(endpoint, options = {}) {
-        return await this.request('get', endpoint, options);
+        options.method = 'get';
+
+        return await this.request(endpoint, options);
     }
 
     async post(endpoint, options = {}) {
-        return await this.request('post', endpoint, options);
-    }
+        options.method = 'post';
 
-    handleError(error) {
-        if (error.response) {
-            log('Error in Response');
-            // The request was made and the server responded with a status code
-            // that falls out of the range of 2xx
-            log('\n== Data ==\n', error.response.data);
-            // log(error.response.status);
-            // log(error.response.headers);
-        }
-        else if (error.request) {
-            log('Error in Request');
-            // The request was made but no response was received
-            // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
-            // http.ClientRequest in node.js
-            log('\n== Message ==\n', error.request);
-        }
-        else {
-            // Something happened in setting up the request that triggered an Error
-            log('\n== Error ==\n', error.message);
-        }
-        log('\n== Configuration ==\n', error.config);
-        log('\n== Error ==\n', error);
+        return await this.request(endpoint, options);
     }
 }

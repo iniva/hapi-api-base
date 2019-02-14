@@ -19,7 +19,8 @@ const defaultConfig = {
     debug: {
         global: false,
         request: false,
-        response: false
+        response: false,
+        error: false
     },
 
     rootDir,

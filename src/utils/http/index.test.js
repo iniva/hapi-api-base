@@ -9,29 +9,29 @@ describe('Utils: HTTP', () => {
 
         expect(http).toBeInstanceOf(HTTP);
         expect(http.instance).toBeInstanceOf(Function);
-        expect(http.instance.defaults).toHaveProperty(
+        expect(http.instance.defaults.options).toHaveProperty(
             'headers',
             expect.objectContaining({
-                'User-Agent': expect.stringContaining(Config.get('userAgent'))
+                'user-agent': expect.stringContaining(Config.get('userAgent'))
             })
-        ); 
+        );
     });
 
     it('should create an instance with custom settings', () => {
         const customAgent = 'Custom Agent';
         const customSettings = {
             headers: {
-                'User-Agent': customAgent
+                'user-agent': customAgent
             }
         };
         const http = new HTTP(customSettings);
 
         expect(http).toBeInstanceOf(HTTP);
         expect(http.instance).toBeInstanceOf(Function);
-        expect(http.instance.defaults).toHaveProperty(
+        expect(http.instance.defaults.options).toHaveProperty(
             'headers',
             expect.objectContaining({
-                'User-Agent': expect.stringContaining(customAgent)
+                'user-agent': expect.stringContaining(customAgent)
             })
         );
     });
