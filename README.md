@@ -104,7 +104,7 @@ Helps you make commit messages using the project standardized format
 Using [hapi-nosql-mongoose](https://github.com/iniva/hapi-nosql-mongoose) plugin
 
 ## ORM (SQL)
-For ORM dtabases (MySQL, Postgres, etc) you can implement [hapi-sequelize-orm](https://github.com/iniva/hapi-sequelize-orm) plugin
+For ORM databases (MySQL, Postgres, etc) you can implement [hapi-sequelize-orm](https://github.com/iniva/hapi-sequelize-orm) plugin
 
 # Documentation
 I use this [implementation](https://github.com/iniva/modular-openapi-docs-boilerplate) to document the API based on the OpenAPI spec.
