@@ -1,17 +1,32 @@
 [![Build Status](https://travis-ci.org/iniva/hapi-api-base.svg?branch=master)](https://travis-ci.org/iniva/hapi-api-base)
 [![Coverage Status](https://coveralls.io/repos/github/iniva/hapi-api-base/badge.svg?branch=master)](https://coveralls.io/github/iniva/hapi-api-base?branch=master)
 
-# Hapi API Base
+# Hapi API Base <!-- omit in toc -->
 Base code I found myself always using when starting an API based on [Hapi](https://hapijs.com/)
 
-## Getting Started
-
+- [Getting Started](#getting-started)
+  - [Running the project from your Host machine](#running-the-project-from-your-host-machine)
+  - [Running the project using Docker Compose](#running-the-project-using-docker-compose)
+- [Available commands](#available-commands)
+  - [yarn start:[environment]](#yarn-startenvironment)
+  - [yarn clean](#yarn-clean)
+  - [yarn build](#yarn-build)
+  - [yarn build:docs](#yarn-builddocs)
+  - [yarn test](#yarn-test)
+  - [yarn lint](#yarn-lint)
+  - [yarn bump:version](#yarn-bumpversion)
+  - [yarn commit](#yarn-commit)
+- [Databases](#databases)
+  - [MongoDB (NoSQL)](#mongodb-nosql)
+  - [ORM (SQL)](#orm-sql)
+- [Documentation](#documentation)
+# Getting Started
 **Clone this repo**
 ```
 ~$ git clone git@github.com:iniva/hapi-api-base.git
 ```
 
-#### Running the project from your Host machine
+## Running the project from your Host machine
 To use your machine to run everything you will need:
 * Node **LTS versions** like _Carbon_ or _Dubnium(**recommended**)_. Using [nvm](https://github.com/creationix/nvm) is easy and recommended
 * **Mac**
@@ -31,7 +46,7 @@ To use your machine to run everything you will need:
     * Run `yarn start:development` to start the API [see below for more options](#available-commands)
     * By default the API will listen to [http://0.0.0.0:8091](http://0.0.0.0:8091)
 
-#### Running the project using Docker Compose
+## Running the project using Docker Compose
 To use Docker Compose you will need:
 * **On Mac**: [Get Docker for Mac](https://docs.docker.com/docker-for-mac/install/)
 * **On Ubuntu**: You will need to install Docker and then Docker compose
@@ -57,32 +72,39 @@ To use Docker Compose you will need:
 
 # Available commands
 
-### yarn start:[environment]
+## yarn start:[environment]
 Start API server in _environment_ mode listening on port 8091
 * Environments:
   * development
   * production
 
-### yarn clean
+## yarn clean
 Remove build files
 
-### yarn build
+## yarn build
 Generate build files (**dist** folder)
 
-### yarn build:docs
+## yarn build:docs
 Generate (or update) the `openapi.yaml` file.
 
-### yarn test
+## yarn test
 Run the test suites
 
-### yarn lint
+## yarn lint
 Run lint tool
 
-### yarn bump:version
+## yarn bump:version
 Generate a new version tag. Also runs the `build:docs` command to update the `openapi.yaml` file with the new API version.
 
-### yarn commit
+## yarn commit
 Helps you make commit messages using the project standardized format
+
+# Databases
+## MongoDB (NoSQL)
+Using [hapi-nosql-mongoose](https://github.com/iniva/hapi-nosql-mongoose) plugin
+
+## ORM (SQL)
+For ORM dtabases (MySQL, Postgres, etc) you can implement [hapi-sequelize-orm](https://github.com/iniva/hapi-sequelize-orm) plugin
 
 # Documentation
 I use this [implementation](https://github.com/iniva/modular-openapi-docs-boilerplate) to document the API based on the OpenAPI spec.

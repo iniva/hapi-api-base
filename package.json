@@ -43,9 +43,7 @@
     "ioredis": "^4.3.0",
     "joi": "^14.3.0",
     "mongoose": "^5.3.16",
-    "sequelize": "^4.42.0",
     "slack-webhooks-handler": "^1.0.1",
-    "sqlite3": "^4.0.4",
     "webpack-merge": "^4.1.5"
   },
   "devDependencies": {
