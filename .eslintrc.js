@@ -9,13 +9,8 @@ module.exports = {
     sourceType: 'module',
     ecmaVersion: 2018
   },
-  extends: [
-    'eslint:recommended',
-    'airbnb-base'
-  ],
-  plugins: [
-    'import'
-  ],
+  extends: ['airbnb-base'],
+  plugins: ['import'],
   settings: {
     'import/resolver': {
       alias: {
@@ -31,17 +26,20 @@ module.exports = {
   rules: {
     // Customized Rules
     'arrow-parens': ['error', 'as-needed'],
-    'no-plusplus': ["error", { "allowForLoopAfterthoughts": true }],
-    'no-param-reassign': ["error", { "props": false }],
+    'no-plusplus': ['error', { allowForLoopAfterthoughts: true }],
+    'no-param-reassign': ['error', { props: false }],
 
     // Plugin Rules
     'import/no-commonjs': ['error', { allowRequire: true }],
-    'import/order': ['warn', {
-      groups: [
-        ['builtin', 'external'],
-        ['internal', 'parent', 'sibling', 'index']
-      ],
-      'newlines-between': 'always'
-    }]
+    'import/order': [
+      'warn',
+      {
+        groups: [
+          ['builtin', 'external'],
+          ['internal', 'parent', 'sibling', 'index']
+        ],
+        'newlines-between': 'always'
+      }
+    ]
   }
-}
+};
