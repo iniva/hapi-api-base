@@ -1,9 +1,9 @@
 const development = {
-    server: {
-        debug: {
-            request: ['*']
-        }
-    }
+  server: {
+    debug: {
+      request: ['*'],
+    },
+  },
 };
 
 export default development;

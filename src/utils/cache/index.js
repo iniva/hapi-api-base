@@ -5,77 +5,76 @@ import Memory from './memory';
 import Logger from 'Utils/logger';
 
 const schema = Joi.object().keys({
-    environment: Joi.string()
-        .required(),
-    driver: Joi.string()
-        .when('environment', {
-            is: 'development',
-            then: Joi.valid(['redis', 'memory']),
-            otherwise: Joi.valid(['redis'])
-        })
-        .required(),
-    ttl: Joi.number()
-        .integer()
-        .greater(0)
-        .required()
+  environment: Joi.string()
+    .required(),
+  driver: Joi.string()
+    .when('environment', {
+      is: 'development',
+      then: Joi.valid(['redis', 'memory']),
+      otherwise: Joi.valid(['redis']),
+    })
+    .required(),
+  ttl: Joi.number()
+    .integer()
+    .greater(0)
+    .required(),
 });
 
 const response = async action => {
-    try {
-        const data = await action;
+  try {
+    const data = await action;
 
-        return { data };
-    }
-    catch (error) {
-        return { error };
-    }
+    return { data };
+  } catch (error) {
+    return { error };
+  }
 };
 
 export default class Cache {
-    constructor(options) {
-        const { error, value } = Joi.validate(options, schema, { abortEarly: false });
+  constructor(options) {
+    const { error, value } = Joi.validate(options, schema, { abortEarly: false });
 
-        if (error) {
-            throw error;
-        }
-
-        switch (value.driver) {
-            case 'redis':
-                this.cache = new Redis();
-                break;
-            default:
-                this.cache = new Memory();
-        }
-
-        this.log = Logger.create('utils:cache');
-        this.ttl = value.ttl;
+    if (error) {
+      throw error;
     }
 
-    cacheClient() {
-        return this.cache;
+    switch (value.driver) {
+      case 'redis':
+        this.cache = new Redis();
+        break;
+      default:
+        this.cache = new Memory();
     }
 
-    async start() {
-        return this.cache.start();
-    }
+    this.log = Logger.create('utils:cache');
+    this.ttl = value.ttl;
+  }
 
-    async stop() {
-        return this.cache.stop();
-    }
+  cacheClient() {
+    return this.cache;
+  }
 
-    async has(key) {
-        return await response(this.cache.has(key));
-    }
+  async start() {
+    return this.cache.start();
+  }
 
-    async get(key) {
-        return await response(this.cache.get(key));
-    }
+  async stop() {
+    return this.cache.stop();
+  }
 
-    async set(key, value, ttl = this.ttl) {
-        return await response(this.cache.set(key, value, ttl));
-    }
+  async has(key) {
+    return response(this.cache.has(key));
+  }
 
-    async drop(key) {
-        return await response(this.cache.drop(key));
-    }
+  async get(key) {
+    return response(this.cache.get(key));
+  }
+
+  async set(key, value, ttl = this.ttl) {
+    return response(this.cache.set(key, value, ttl));
+  }
+
+  async drop(key) {
+    return response(this.cache.drop(key));
+  }
 }

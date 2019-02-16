@@ -1,8 +1,6 @@
 export default {
-    type: 'onPreHandler',
-    method: (request, h) => {
-        // your preHandler logic
+  type: 'onPreHandler',
+  // your preHandler logic
+  method: (request, h) => h.continue,
 
-        return h.continue;
-    }
 };

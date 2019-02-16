@@ -1,9 +1,9 @@
 const test = {
-    server: {
-        debug: {
-            request: ['*']
-        }
-    }
+  server: {
+    debug: {
+      request: ['*'],
+    },
+  },
 };
 
 export default test;
