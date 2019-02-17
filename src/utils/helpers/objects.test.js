@@ -32,13 +32,14 @@ describe('Object Helpers:', () => {
         address: undefined,
         test: false,
       };
+      const newObj = clean(object);
 
-      expect(clean(object)).not.toHaveProperty('age');
-      expect(clean(object)).not.toHaveProperty('address');
-      expect(clean(object)).not.toHaveProperty('test');
+      expect(newObj).not.toHaveProperty('age');
+      expect(newObj).not.toHaveProperty('address');
+      expect(newObj).not.toHaveProperty('test');
     });
 
-    it('should return given object without invalid values according to the custom guard', () => {
+    it('should return given object without invalid values according to the "allowed" options', () => {
       const object = {
         name: 'Testy',
         lastName: 'McTesty',
@@ -46,13 +47,12 @@ describe('Object Helpers:', () => {
         address: undefined,
         test: false,
       };
-      const customGuard = (obj, key) => (
-        obj[key] !== null && obj[key] !== undefined
-      );
+      const options = { _false: true };
+      const newObj = clean(object, options);
 
-      expect(clean(object, customGuard)).not.toHaveProperty('age');
-      expect(clean(object, customGuard)).not.toHaveProperty('address');
-      expect(clean(object, customGuard)).toHaveProperty('test');
+      expect(newObj).not.toHaveProperty('age');
+      expect(newObj).not.toHaveProperty('address');
+      expect(newObj).toHaveProperty('test');
     });
   });
 });
