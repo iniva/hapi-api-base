@@ -1,6 +1,6 @@
 /* global describe it expect */
 
-import HTTP from '.';
+import HTTP from './index';
 import Config from 'Config';
 
 describe('Utils: HTTP', () => {

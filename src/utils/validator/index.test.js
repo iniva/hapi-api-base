@@ -1,7 +1,7 @@
 /* global describe it expect */
 import Joi from 'joi';
 
-import Validator from '.';
+import Validator from './index';
 
 const schema = Joi.object().keys({
   field: Joi.string().required(),

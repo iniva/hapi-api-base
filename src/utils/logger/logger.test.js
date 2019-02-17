@@ -1,5 +1,5 @@
 /* global beforeEach describe it expect */
-import Logger from '.';
+import Logger from './index';
 import { slug } from '../helpers/string';
 
 describe('Utils: Logger', () => {
