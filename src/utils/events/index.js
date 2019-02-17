@@ -1,3 +1,4 @@
+/* eslint-disable guard-for-in, no-restricted-syntax */
 import EventEmitter from 'events';
 
 export default class EventManager extends EventEmitter {
