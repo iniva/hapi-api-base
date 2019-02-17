@@ -1,17 +1,19 @@
 import { STATUS_CODES } from 'http';
 
-const statuses = {};
-const codes = {};
+const STATUSES = {};
+const CODES = {};
 
-for (const [code, status] of Object.entries(STATUS_CODES)) {
-    const statusText = status
-        .toUpperCase()
-        .replace(/\s+/g, '_')
-        .replace(/-+/g, '_');
+Object.entries(STATUS_CODES).forEach(([code, status]) => {
+  const statusText = status
+    .toUpperCase()
+    .replace(/\s+/g, '_')
+    .replace(/-+/g, '_');
 
-    statuses[statusText] = Number(code);
-    codes[Number(code)] = status;
-}
+  STATUSES[statusText] = Number(code);
+  CODES[Number(code)] = status;
+});
 
-export const STATUSES = statuses;
-export const CODES = codes;
+export {
+  STATUSES,
+  CODES,
+};

@@ -3,8 +3,8 @@ import blipp from 'blipp';
 import Good from 'good';
 
 import Config from './config';
-import { MONGODB } from 'Config/database';
-import { SLACK } from 'Config/slack';
+import MONGODB from 'Config/database/mongodb';
+import SLACK from 'Config/slack';
 import Plugins from './plugins';
 import Extensions from 'Utils/extensions';
 import Logger from 'Utils/logger';
@@ -16,50 +16,49 @@ const server = Hapi.server(options);
 const log = Logger.create();
 // const cache = new Cache(Config.get('cache'));
 
-const init = async() => {
-    try {
-        // Community Plugins
-        await server.register(blipp);
-        await server.register({
-            plugin: Good,
-            options: Config.get('logging')
-        });
+const init = async () => {
+  try {
+    // Community Plugins
+    await server.register(blipp);
+    await server.register({
+      plugin: Good,
+      options: Config.get('logging'),
+    });
 
-        // Our Plugins
-        // await cache.start();
+    // Our Plugins
+    // await cache.start();
 
-        const pluginOptions = {
-            mongodb: {
-                ...MONGODB,
-                logger: Logger.create('plugins:database:mongodb'),
-                schemas
-            },
-            services: {
-                ...Config.get('services'),
-                slack: SLACK
-            }
-        };
+    const pluginOptions = {
+      mongodb: {
+        ...MONGODB,
+        logger: Logger.create('plugins:database:mongodb'),
+        schemas,
+      },
+      services: {
+        ...Config.get('services'),
+        slack: SLACK,
+      },
+    };
 
-        await Plugins.register(server, pluginOptions);
+    await Plugins.register(server, pluginOptions);
 
-        // Register Server Extensions
-        Extensions.register(server);
+    // Register Server Extensions
+    Extensions.register(server);
 
-        // Server Init
-        await server.start();
-        log(`${process.env.APP_NAME} ${Config.get('version')} running at ${server.info.uri}`);
-    }
-    catch (error) {
-        log(`There was an error while starting the server: ${error.message}`);
-        log(error);
-    }
+    // Server Init
+    await server.start();
+    log(`${process.env.APP_NAME} ${Config.get('version')} running at ${server.info.uri}`);
+  } catch (error) {
+    log(`There was an error while starting the server: ${error.message}`);
+    log(error);
+  }
 };
 
 process.on('unhandledRejection', err => {
-    log('An Unhandled Rejection occurred.');
-    log(err);
+  log('An Unhandled Rejection occurred.');
+  log(err);
 });
 
-(async() => {
-    await init();
+(async () => {
+  await init();
 })();

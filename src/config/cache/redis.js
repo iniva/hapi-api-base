@@ -10,13 +10,13 @@ const port = process.env.REDIST_PORT || DEFAULT_PORT;
 const connectTimeout = toMilliseconds(process.env.REDIS_CONNECT_TIMEOUT || DEFAULT_TIMEOUT);
 const maxAttempts = process.env.REDIS_MAX_ATTEMPTS || DEFAULT_MAX_ATTEMPTS;
 
-export const REDIS = {
-    config: {
-        host,
-        port,
-        connectTimeout
-    },
-    settings: {
-        maxAttempts
-    }
+export default {
+  config: {
+    host,
+    port,
+    connectTimeout,
+  },
+  settings: {
+    maxAttempts,
+  },
 };
