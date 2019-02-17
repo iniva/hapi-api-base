@@ -1,4 +1,5 @@
 import Config from 'Config/';
+import { hasOwnProperty } from 'Utils/helpers/objects';
 
 const name = 'discovery-service';
 const serviceMask = Config.get('services.mask');
@@ -22,7 +23,7 @@ export default {
     const get = service => {
       const services = getAll();
 
-      if (!services.hasOwnProperty(service)) {
+      if (!hasOwnProperty(services, service)) {
         throw new Error(`[${service}] service does not exist`);
       }
 
