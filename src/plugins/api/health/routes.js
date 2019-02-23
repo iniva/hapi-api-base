@@ -1,11 +1,11 @@
 import HealthController from './controller';
 
-const prefix = 'health';
+const API_PATH = '/health';
 
 export default [
   {
     method: 'GET',
-    path: `/${prefix}`,
+    path: API_PATH,
     options: {
       description: 'Health Check',
       handler: HealthController.get,

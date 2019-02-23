@@ -4,9 +4,11 @@ import Mongoose from 'hapi-nosql-mongoose';
 // Services Plugins
 import discoveryService from './services/discovery';
 import slackService from './services/slack';
+import eventsService from './services/events';
 // API Plugins
 import health from './api/health';
 import webhooks from './api/webhooks';
+import events from './api/events';
 
 export default class Plugins {
   static async register(server, options) {
@@ -31,12 +33,19 @@ export default class Plugins {
           ...options.services.slack,
         },
       },
+      {
+        plugin: eventsService,
+        options: {
+          mask: options.services.mask,
+        },
+      },
     ]);
 
     // API Plugins
     await server.register([
       health,
       webhooks,
+      events,
     ]);
   }
 }

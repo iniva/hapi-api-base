@@ -26,6 +26,7 @@ module.exports = {
   rules: {
     // Customized Rules
     'arrow-parens': ['error', 'as-needed'],
+    'no-return-await': 'warn',
     'no-plusplus': ['error', { allowForLoopAfterthoughts: true }],
     'no-param-reassign': ['error', { props: false }],
 
