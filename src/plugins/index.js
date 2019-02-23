@@ -8,6 +8,7 @@ import eventsService from './services/events';
 // API Plugins
 import health from './api/health';
 import webhooks from './api/webhooks';
+import events from './api/events';
 
 export default class Plugins {
   static async register(server, options) {
@@ -44,6 +45,7 @@ export default class Plugins {
     await server.register([
       health,
       webhooks,
+      events,
     ]);
   }
 }
