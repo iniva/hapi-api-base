@@ -1,11 +1,11 @@
 import WebhooksController from './controller';
 
-const prefix = 'webhooks';
+const API_PATH = '/webhooks';
 
 export default [
   {
     method: 'GET',
-    path: `/${prefix}`,
+    path: API_PATH,
     options: {
       description: 'List available webhooks',
       handler: WebhooksController.get,
@@ -14,7 +14,7 @@ export default [
 
   {
     method: 'POST',
-    path: `/${prefix}/{type}`,
+    path: `${API_PATH}/{type}`,
     options: {
       description: 'Webhooks Trigger',
       handler: WebhooksController.trigger,
