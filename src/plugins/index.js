@@ -4,6 +4,7 @@ import Mongoose from 'hapi-nosql-mongoose';
 // Services Plugins
 import discoveryService from './services/discovery';
 import slackService from './services/slack';
+import eventsService from './services/events';
 // API Plugins
 import health from './api/health';
 import webhooks from './api/webhooks';
@@ -29,6 +30,12 @@ export default class Plugins {
         options: {
           mask: options.services.mask,
           ...options.services.slack,
+        },
+      },
+      {
+        plugin: eventsService,
+        options: {
+          mask: options.services.mask,
         },
       },
     ]);

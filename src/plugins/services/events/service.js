@@ -1,13 +1,12 @@
-/* eslint-disable guard-for-in, no-restricted-syntax */
 import EventEmitter from 'events';
 
-export default class EventManager extends EventEmitter {
+export default class EventService extends EventEmitter {
   addSubscribers(listeners) {
-    for (const name in listeners) {
-      const listener = new listeners[name]();
+    Object.values(listeners).forEach(ListenerFn => {
+      const listener = new ListenerFn();
 
       this.on(listener.getEventName(), listener.getHandler);
-    }
+    });
   }
 
   fire(event, args) {
