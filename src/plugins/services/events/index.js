@@ -1,7 +1,7 @@
 import EventService from './service';
 import listeners from './listeners';
 
-const name = 'slack-service';
+const name = 'events-service';
 
 export default {
   name,
