@@ -58,6 +58,7 @@
     "babel-core": "^7.0.0-bridge.0",
     "babel-jest": "^24.1.0",
     "babel-plugin-module-resolver": "^3.1.1",
+    "babel-preset-airbnb": "^3.2.0",
     "commitizen": "^3.0.7",
     "coveralls": "^3.0.3",
     "cz-conventional-changelog": "^2.1.0",
