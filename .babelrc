@@ -1,13 +1,16 @@
 {
   "presets": [
-    ["@babel/preset-env",
-      {
-        "targets": {
-          "node": "current"
-        },
-        "useBuiltIns": "entry"
+    ["@babel/preset-env", {
+      "targets": {
+        "node": "current"
+      },
+      "useBuiltIns": "entry"
+    }],
+    ["airbnb", {
+      "targets": {
+        "node": "current"
       }
-    ]
+    }]
   ],
   "plugins": [
     "@babel/plugin-transform-runtime",
