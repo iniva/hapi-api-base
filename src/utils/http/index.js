@@ -1,9 +1,11 @@
 import got from 'got';
+import HttpAgent from 'agentkeepalive';
 
 import Config from 'Config/index';
 import Logger from '../logger';
 
 const log = Logger.create('utils:http');
+const { HttpsAgent } = HttpAgent;
 
 const getHooks = () => {
   const logError = error => {
@@ -56,6 +58,10 @@ export default class HTTP {
       responseType: 'json',
       json: true,
       hooks: getHooks(),
+      agent: {
+        http: new HttpAgent(),
+        https: new HttpsAgent(),
+      },
     };
 
     const fullOptions = got.mergeOptions(defaultOptions, options);
