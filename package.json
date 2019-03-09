@@ -30,6 +30,7 @@
   "dependencies": {
     "@babel/runtime": "^7.2.0",
     "@slack/client": "^4.8.0",
+    "agentkeepalive": "^4.0.2",
     "blipp": "^3.0.0",
     "boom": "^7.3.0",
     "debug": "^4.1.0",
