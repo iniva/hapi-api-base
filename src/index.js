@@ -1,6 +1,7 @@
 import Hapi from 'hapi';
 import blipp from 'blipp';
-import Good from 'good';
+// import Good from 'good';
+import HapiPino from 'hapi-pino';
 
 import Config from './config';
 import MONGODB from 'Config/database/mongodb';
@@ -20,9 +21,13 @@ const init = async () => {
   try {
     // Community Plugins
     await server.register(blipp);
+    // await server.register({
+    //   plugin: Good,
+    //   options: Config.get('logging.good'),
+    // });
     await server.register({
-      plugin: Good,
-      options: Config.get('logging'),
+      plugin: HapiPino,
+      options: Config.get('logging.pino'),
     });
 
     // Our Plugins
