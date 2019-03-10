@@ -1,4 +1,4 @@
-/* eslint-disable no-magic-numbers */
+import os from 'os';
 import merge from 'webpack-merge';
 import Path from 'path';
 
@@ -72,21 +72,28 @@ const defaultConfig = {
   },
 
   logging: {
-    ops: {
-      interval: 1000,
+    good: {
+      ops: {
+        interval: 1000,
+      },
+      reporters: {
+        ConsoleReporter: [
+          {
+            module: 'good-squeeze',
+            name: 'Squeeze',
+            args: [{ log: '*', response: '*' }],
+          },
+          {
+            module: 'good-console',
+          },
+          'stdout',
+        ],
+      },
     },
-    reporters: {
-      ConsoleReporter: [
-        {
-          module: 'good-squeeze',
-          name: 'Squeeze',
-          args: [{ log: '*', response: '*' }],
-        },
-        {
-          module: 'good-console',
-        },
-        'stdout',
-      ],
+
+    pino: {
+      // prettyPrint: process.env.NODE_ENV !== 'production',
+      base: { hostname: os.hostname() },
     },
   },
 };

@@ -41,6 +41,7 @@
     "got": "^9.6.0",
     "hapi": "^18.1.0",
     "hapi-nosql-mongoose": "^1.0.1",
+    "hapi-pino": "^5.4.1",
     "ioredis": "^4.3.0",
     "joi": "^14.3.0",
     "mongoose": "^5.4.18",
