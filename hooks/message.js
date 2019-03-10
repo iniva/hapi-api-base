@@ -33,7 +33,7 @@ const transformMessage = async message => {
   let firstLine = lines.shift();
   const branchName = await getBranchName();
 
-  if (!firstLine.includes(branchName)) {
+  if (!firstLine.includes(`[${branchName}]`)) {
     firstLine = `[${branchName}] ${firstLine}`;
   }
   lines.unshift(firstLine);
