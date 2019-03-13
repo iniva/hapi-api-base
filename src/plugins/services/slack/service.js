@@ -11,6 +11,18 @@ export default class SlackService {
     ];
   }
 
+  message(message = '') {
+    this.dispatcher.text = message;
+
+    return this;
+  }
+
+  attach(attachments = []) {
+    this.dispatcher.withAttachments(attachments);
+
+    return this;
+  }
+
   async send() {
     return this.dispatcher.send();
   }
@@ -19,7 +31,7 @@ export default class SlackService {
     const webhook = factory(type);
     const { attachments } = webhook(...params);
 
-    this.dispatcher.withAttachments(attachments);
+    this.attach(attachments);
 
     return this;
   }
