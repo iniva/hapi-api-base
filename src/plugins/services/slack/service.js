@@ -3,12 +3,13 @@ import { Dispatcher, factory } from 'slack-webhooks-handler';
 export default class SlackService {
   constructor({ webhook }) {
     this.dispatcher = new Dispatcher(webhook);
-  }
-
-  static webhookList() {
-    return [
+    this.webhooks = [
       'github',
     ];
+  }
+
+  webhookList() {
+    return this.webhooks;
   }
 
   message(message = '') {
