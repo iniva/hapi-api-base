@@ -5908,10 +5908,10 @@ sisteransi@^1.0.0:
   resolved "https://registry.yarnpkg.com/sisteransi/-/sisteransi-1.0.0.tgz#77d9622ff909080f1c19e5f4a1df0c1b0a27b88c"
   integrity sha512-N+z4pHB4AmUv0SjveWRd6q1Nj5w62m5jodv+GD8lvmbY/83T/rpbJGZOnK5T149OldDj4Db07BSv9xY4K6NTPQ==
 
-slack-webhooks-handler@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/slack-webhooks-handler/-/slack-webhooks-handler-1.0.2.tgz#a047a633da6b5a8693251aae001738f586536ee7"
-  integrity sha512-KmxyAYykoQYWy7dJp8PsJsvfixrhUSW6fBEECiBCkLc4MG/A9fudh4+J7KUMKwvwRX+B0wsJ57tK9y3EJ5OLgg==
+slack-webhooks-handler@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/slack-webhooks-handler/-/slack-webhooks-handler-1.0.4.tgz#157cb24a3d8e1665a18831e30c420ea05df25f4b"
+  integrity sha512-TU4jvQ/Dge8UWOSHC5jexd2ix/K8MIKEtJcnbrbEMDOOjaRrqzK5XyQlhCThFxsga6p5uVWwW2PMAks7Ena/vQ==
   dependencies:
     "@slack/client" "^4.11.0"
 
