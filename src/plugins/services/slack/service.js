@@ -3,12 +3,25 @@ import { Dispatcher, factory } from 'slack-webhooks-handler';
 export default class SlackService {
   constructor({ webhook }) {
     this.dispatcher = new Dispatcher(webhook);
-  }
-
-  static webhookList() {
-    return [
+    this.webhooks = [
       'github',
     ];
+  }
+
+  webhookList() {
+    return this.webhooks;
+  }
+
+  message(message = '') {
+    this.dispatcher.text = message;
+
+    return this;
+  }
+
+  attach(attachments = []) {
+    this.dispatcher.withAttachments(attachments);
+
+    return this;
   }
 
   async send() {
@@ -19,7 +32,7 @@ export default class SlackService {
     const webhook = factory(type);
     const { attachments } = webhook(...params);
 
-    this.dispatcher.withAttachments(attachments);
+    this.attach(attachments);
 
     return this;
   }
