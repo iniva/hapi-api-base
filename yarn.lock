@@ -1349,10 +1349,10 @@ babel-plugin-transform-react-remove-prop-types@^0.4.18:
   resolved "https://registry.yarnpkg.com/babel-plugin-transform-react-remove-prop-types/-/babel-plugin-transform-react-remove-prop-types-0.4.24.tgz#f2edaf9b4c6a5fbe5c1d678bfb531078c1555f3a"
   integrity sha512-eqj0hVcJUR57/Ug2zE1Yswsw4LhuqqHhD+8v120T1cl3kjg76QwtyBrdIk4WVwK+lAhBJVYCd/v+4nc4y+8JsA==
 
-babel-preset-airbnb@^3.2.0:
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/babel-preset-airbnb/-/babel-preset-airbnb-3.2.0.tgz#9d334a32bfd3aedcbeb812cb9d0478cc23973469"
-  integrity sha512-/0FNYjTpJtkqrdF8cyb7T5XQedje8nl+GB4vS+TvI2kjMX33EyyZA+0RBMrKSNwAaSdLurhQEF/JWDBRTAqrrA==
+babel-preset-airbnb@^3.2.1:
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/babel-preset-airbnb/-/babel-preset-airbnb-3.2.1.tgz#6ce0ed936701178af63fbcd363979659398f97e7"
+  integrity sha512-TLmtPLDMUhX2PC1nNEQsJqqX36il6YH9rGN57m0l8rrFaExJZqHM6CqyL7/RLmLmDZbDcp4OPcLwHeDcCDAJCA==
   dependencies:
     "@babel/helper-plugin-utils" "^7.0.0"
     "@babel/plugin-proposal-object-rest-spread" "^7.0.0"
@@ -1405,14 +1405,14 @@ binary-extensions@^1.0.0:
   resolved "https://registry.yarnpkg.com/binary-extensions/-/binary-extensions-1.13.0.tgz#9523e001306a32444b907423f1de2164222f6ab1"
   integrity sha512-EgmjVLMn22z7eGGv3kcnHwSnJXmFHjISTY9E/S5lIcTD3Oxw05QTcBLNkJFzcb3cNueUdF/IN4U+d78V0zO8Hw==
 
-blipp@^3.0.0:
-  version "3.1.2"
-  resolved "https://registry.yarnpkg.com/blipp/-/blipp-3.1.2.tgz#584da06f8a9991dfe5f0e7c6c06ccae3a1bf50ef"
-  integrity sha512-Q0tzAKiS3YvjpSO3p0nQ//JhWs16lvXwTWY41EEQSjoFKlIvu5KK75OJIfftDEp9LPtDtLTrKCPkIMCG29f+MQ==
+blipp@^3.1.3:
+  version "3.1.3"
+  resolved "https://registry.yarnpkg.com/blipp/-/blipp-3.1.3.tgz#6467197284422cb6b86caa940951e93de09f65cb"
+  integrity sha512-8KOOnYkqHFrkhupgkJQV36iCCSNa0w29f9TOdhyJdSbDSJ8OL/cXHnZJQpVesNCzrN1/yvmpAODL9arTqGMgbQ==
   dependencies:
     chalk "^2.3.0"
     easy-table "^1.1.1"
-    hoek "^5.0.4"
+    hoek "^6.1.2"
     joi "^13.7.0"
 
 bluebird@3.5.1:
@@ -3093,7 +3093,7 @@ hoek@4.2.x:
   resolved "https://registry.yarnpkg.com/hoek/-/hoek-4.2.1.tgz#9634502aa12c445dd5a7c5734b572bb8738aacbb"
   integrity sha512-QLg82fGkfnJ/4iy1xZ81/9SIJiq1NGFUMGs6ParyjBZr6jW2Ufj/snDqTHixNlHdPNwN2RLVD0Pi3igeK9+JfA==
 
-hoek@5.x.x, hoek@^5.0.4:
+hoek@5.x.x:
   version "5.0.4"
   resolved "https://registry.yarnpkg.com/hoek/-/hoek-5.0.4.tgz#0f7fa270a1cafeb364a4b2ddfaa33f864e4157da"
   integrity sha512-Alr4ZQgoMlnere5FZJsIyfIjORBqZll5POhDsF4q64dPuJR6rNxXdDxtHSQq8OXRurhmx+PWYEE8bXRROY8h0w==
@@ -4555,10 +4555,10 @@ mongoose@5.4.10:
     safe-buffer "5.1.2"
     sliced "1.0.1"
 
-mongoose@^5.4.19:
-  version "5.4.19"
-  resolved "https://registry.yarnpkg.com/mongoose/-/mongoose-5.4.19.tgz#fdca94ee7f71da2cf0e941d02255aa02007c55c0"
-  integrity sha512-paRU3nbCrPIUVw1GAlxo11uIIqrYORctUx1kcLj7i2NhkxPQuy5OK2/FYj8+tglsaixycmONSyop2HQp1IUQSA==
+mongoose@^5.4.22:
+  version "5.4.22"
+  resolved "https://registry.yarnpkg.com/mongoose/-/mongoose-5.4.22.tgz#45000ea9aefa687dce1dc087db71b5084634d119"
+  integrity sha512-rbtmFmXe5YJfBrVfOpSW2xeSAKFtnJ5RLQjl4ULzT1icmY/SUHtJ5b+mW4SMCEk7whm/w+2oHO9qMBr8UI1xIw==
   dependencies:
     async "2.6.1"
     bson "~1.1.0"
