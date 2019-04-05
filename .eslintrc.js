@@ -30,6 +30,7 @@ module.exports = {
     'no-param-reassign': ['error', { props: false }],
 
     // Plugin Rules
+    'import/no-extraneous-dependencies': ['error', { packageDir: './' }],
     'import/no-commonjs': ['error', { allowRequire: true }],
     'import/order': [
       'warn',
