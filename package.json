@@ -73,7 +73,7 @@
     "husky": "^1.2.1",
     "jest": "^24.7.1",
     "nodemon": "^1.18.8",
-    "refs-compiler": "^1.0.1"
+    "refs-compiler": "^2.0.0"
   },
   "config": {
     "commitizen": {
