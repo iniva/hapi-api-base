@@ -71,7 +71,7 @@
     "eslint-plugin-import": "^2.14.0",
     "husky": "^1.2.1",
     "jest": "^24.7.1",
-    "nodemon": "^1.18.8",
+    "nodemon": "^1.18.11",
     "refs-compiler": "^2.0.0"
   },
   "config": {
