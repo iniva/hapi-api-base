@@ -1,4 +1,4 @@
-import Boom from 'boom';
+import Boom from '@hapi/boom';
 
 export default class WebhooksController {
   static async get(request) {

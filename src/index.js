@@ -1,6 +1,6 @@
-import Hapi from 'hapi';
+import Hapi from '@hapi/hapi';
 import blipp from 'blipp';
-// import Good from 'good';
+// import Good from '@hapi/good';
 import HapiPino from 'hapi-pino';
 
 import Config from './config';
