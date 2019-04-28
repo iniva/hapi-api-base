@@ -1,4 +1,4 @@
-import Joi from 'joi';
+import Joi from '@hapi/joi';
 
 import Redis from './redis';
 import Memory from './memory';

@@ -3,7 +3,7 @@
  * This is the base for DTO files.
  * Maybe "Model" is not the best name for it but ¯\_(ツ)_/¯
  */
-import Joi from 'joi';
+import Joi from '@hapi/joi';
 
 export default class Model {
   constructor(data, schema) {

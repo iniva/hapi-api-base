@@ -79,12 +79,12 @@ const defaultConfig = {
       reporters: {
         ConsoleReporter: [
           {
-            module: 'good-squeeze',
+            module: '@hapi/good-squeeze',
             name: 'Squeeze',
             args: [{ log: '*', response: '*' }],
           },
           {
-            module: 'good-console',
+            module: '@hapi/good-console',
           },
           'stdout',
         ],
