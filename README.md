@@ -19,6 +19,7 @@ Base code I found myself always using when starting an API based on [Hapi](https
 - [Databases](#databases)
   - [MongoDB (NoSQL)](#mongodb-nosql)
   - [ORM (SQL)](#orm-sql)
+- [Local Development with HTTPS](#local-development-with-https)
 - [Documentation](#documentation)
 # Getting Started
 **Clone this repo**
@@ -105,6 +106,18 @@ Using [hapi-nosql-mongoose](https://github.com/iniva/hapi-nosql-mongoose) plugin
 
 ## ORM (SQL)
 For ORM databases (MySQL, Postgres, etc) you can implement [hapi-sequelize-orm](https://github.com/iniva/hapi-sequelize-orm) plugin
+
+# Local Development with HTTPS
+You can use HTTPS locally with the help of [mkcert](https://github.com/FiloSottile/mkcert). Follow the instructions to install **mkcert** on your OS. Then you can create your own certs like this:
+* (`optional`) if you didn't already, run
+  ```
+  mkcert -install
+  ```
+* Create certs for `localhost` and `0.0.0.0`
+  ```
+  mkcert localhost 0.0.0.0
+  ```
+  > If you create certs for domains other than `localhost` you would need to update the name of the certs in `config/development.js`
 
 # Documentation
 I use this [implementation](https://github.com/iniva/modular-openapi-docs-boilerplate) to document the API based on the OpenAPI spec.
