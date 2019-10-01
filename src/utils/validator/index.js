@@ -1,4 +1,3 @@
-import Joi from '@hapi/joi';
 import Boom from '@hapi/boom';
 
 const DEFAULT_OPTIONS = {
@@ -13,9 +12,12 @@ export default class Validator {
   }
 
   static validate(values, schema, options = {}) {
-    const fullOptions = Object.assign(DEFAULT_OPTIONS, options);
+    const fullOptions = {
+      ...DEFAULT_OPTIONS,
+      ...options,
+    };
 
-    return Joi.validate(values, schema, fullOptions);
+    return schema.validate(values, fullOptions);
   }
 
   static parseValidation({ error, value }) {

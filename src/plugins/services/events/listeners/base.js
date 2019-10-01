@@ -8,7 +8,7 @@ export default class Base {
         .empty()
         .required(),
     });
-    const validation = Joi.validate({ name }, schema);
+    const validation = schema.validate({ name });
 
     if (validation.error) {
       const [error] = validation.error.details;

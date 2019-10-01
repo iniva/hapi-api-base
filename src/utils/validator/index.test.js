@@ -20,14 +20,14 @@ describe('Utils: Validator', () => {
       const { error } = Validator.validate({}, schema);
 
       expect(error).toBeInstanceOf(Error);
-      expect(error.message).toBe('child "field" fails because ["field" is required]');
+      expect(error.message).toBe('"field" is required');
     });
 
     it('should fail when receiving invalid values', () => {
       const { error } = Validator.validate({ field: 1234 }, schema);
 
       expect(error).toBeInstanceOf(Error);
-      expect(error.message).toBe('child "field" fails because ["field" must be a string]');
+      expect(error.message).toBe('"field" must be a string');
     });
 
     it('should work when receiving valid values', () => {

@@ -4,21 +4,17 @@ import Base from './base';
 
 describe('Event Listener', () => {
   it('should throw when receiving an invalid name', () => {
-    expect(() => {
-      const event = new Base(); // eslint-disable-line no-unused-vars
-    }).toThrow();
+    expect(() => new Base())
+      .toThrow();
 
-    expect(() => {
-      const event = new Base(undefined); // eslint-disable-line no-unused-vars
-    }).toThrow();
+    expect(() => new Base(undefined))
+      .toThrow();
 
-    expect(() => {
-      const event = new Base(''); // eslint-disable-line no-unused-vars
-    }).toThrow();
+    expect(() => new Base(''))
+      .toThrow();
 
-    expect(() => {
-      const event = new Base('name'); // eslint-disable-line no-unused-vars
-    }).toThrow();
+    expect(() => new Base('name'))
+      .toThrow();
   });
 
   it('should create a new instance', () => {
