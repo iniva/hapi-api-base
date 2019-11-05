@@ -44,7 +44,7 @@
     "hapi-nosql-mongoose": "^1.0.7",
     "hapi-pino": "^6.1.0",
     "ioredis": "^4.14.1",
-    "mongoose": "^5.7.3",
+    "mongoose": "^5.7.5",
     "slack-webhooks-handler": "^1.2.2",
     "webpack-merge": "^4.2.2"
   },
