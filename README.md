@@ -1,5 +1,4 @@
-[![Build Status](https://travis-ci.org/iniva/hapi-api-base.svg?branch=master)](https://travis-ci.org/iniva/hapi-api-base)
-[![Coverage Status](https://coveralls.io/repos/github/iniva/hapi-api-base/badge.svg?branch=master)](https://coveralls.io/github/iniva/hapi-api-base?branch=master)
+> :warning: This won't be updated anymore
 
 # Hapi API Base <!-- omit in toc -->
 Base code I found myself always using when starting an API based on [Hapi](https://hapijs.com/)
